@@ -1,5 +1,5 @@
 <div class="container d-flex justify-content-center align-items-center">
-  <div class="row">
+  <div class="row border border-dark rounded-2">
     <div class="col-md-10" *ngIf="formType === 'login'">
       <h1>Login</h1>
       <form>
@@ -13,10 +13,12 @@
           <label for="password">Password</label>
           <input type="password" class="form-control" id="password" placeholder="Password" />
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="form-group mt-1">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
       </form>
     </div>
-    <div class="col-md-10" *ngIf="formType === 'register'">
+    <div class="col-md-12" *ngIf="formType === 'register'">
       <h1>Register</h1>
       <form>
         <div class="form-group">
@@ -52,14 +54,18 @@
           <label for="phoneNumber">Phone Number</label>
           <input type="text" class="form-control" id="phoneNumber" placeholder="Phone Number" />
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="form-group mt-1">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
       </form>
     </div>
     <div class="row">
       <div class="col-md-12">
-        <button class="btn btn-secondary" (click)="formType = formType === 'login' ? 'register' : 'login'">
-          {{ formType === "login" ? "Go to Register" : "Go to Login" }}
-        </button>
+        <div class="form-group mt-1">
+          <button class="btn btn-secondary" (click)="formType = formType === 'login' ? 'register' : 'login'">
+            {{ formType === "login" ? "Go to Register" : "Go to Login" }}
+          </button>
+        </div>
       </div>
     </div>
   </div>
