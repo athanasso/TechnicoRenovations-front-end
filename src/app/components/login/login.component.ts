@@ -33,7 +33,7 @@ export class LoginPageComponent implements OnInit {
       "password": this.userLoginForm.get("password")?.value
     };
 
-    this.service.getUser(this.userLoginForm).subscribe({
+    this.service.getUser(this.login).subscribe({
       next: data => {
         this.user = data;
         console.log(this.user);
