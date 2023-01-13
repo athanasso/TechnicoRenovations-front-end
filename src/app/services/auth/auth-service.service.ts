@@ -23,4 +23,15 @@ export class AuthServiceService {
         catchError(error => throwError(() => 'Something is wrong...'))
       );
   }
+
+  register(data:any){
+    const headers = new HttpHeaders()
+    .set('Content-Type', 'application/json');
+
+    return this.http.post(this.RegisterEndPoint, JSON.stringify(data), { headers: headers })
+      .pipe(
+        retry(1),
+        catchError(error => throwError(() => 'Something is wrong...'))
+      );
+  }
 }
