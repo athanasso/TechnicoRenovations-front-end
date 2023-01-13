@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { retry, catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,4 +18,49 @@ export class AdminServiceService {
   private readonly deleteRepairsEndPoint = 'http://localhost:8080/shop/api/admin/delete_repairs';
 
   constructor(private http: HttpClient) { }
+
+  getPendingRepairs(){
+    const headers = new HttpHeaders()
+    .set('Content-Type', 'application/json');
+
+    return this.http.get(this.pendingRepairsEndPoint, { headers: headers })
+      .pipe(
+        retry(1),
+        catchError(error => throwError(() => 'Something is wrong...'))
+      );
+  }
+
+  getPropertyRepairs(){
+    const headers = new HttpHeaders()
+    .set('Content-Type', 'application/json');
+
+    return this.http.get(this.propertyRepairsEndPoint, { headers: headers })
+      .pipe(
+        retry(1),
+        catchError(error => throwError(() => 'Something is wrong...'))
+      );
+  }
+
+  getProperties (){
+    const headers = new HttpHeaders()
+    .set('Content-Type', 'application/json');
+
+    return this.http.get(this.propertiesEndPoint, { headers: headers })
+      .pipe(
+        retry(1),
+        catchError(error => throwError(() => 'Something is wrong...'))
+      );
+  }
+
+  getOwners(){
+    const headers = new HttpHeaders()
+    .set('Content-Type', 'application/json');
+
+    return this.http.get(this.ownersEndPoint, { headers: headers })
+      .pipe(
+        retry(1),
+        catchError(error => throwError(() => 'Something is wrong...'))
+      );
+  }
+
 }

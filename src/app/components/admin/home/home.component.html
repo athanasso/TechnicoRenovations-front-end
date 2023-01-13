@@ -1,26 +1,42 @@
+<admin-header></admin-header>
 <div class="container">
   <div class="jumbotron text-center">
     <h1 class="display-4">Welcome to Technicon Renovations</h1>
     <p class="lead">This is the home page of admin.</p>
     <hr class="my-4">
     <p>It uses Angular and Bootstrap to create a responsive and user-friendly interface.</p>
-    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+    <a class="btn btn-primary btn-lg" role="button">Learn more</a>
   </div>
   <div class="row">
     <div class="col-md-4">
-      <h2>Heading</h2>
-      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-      <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
-    </div>
-    <div class="col-md-4">
-      <h2>Heading</h2>
-      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-      <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
-    </div>
-    <div class="col-md-4">
-      <h2>Heading</h2>
-      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-      <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Index</th>
+            <th>Id</th>
+            <th>Type</th>
+            <th>Descreption</th>
+            <th>Status</th>
+            <th>Owner Name</th>
+            <th>Owner Vat</th>
+            <th>Property Id</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let r of response.data">
+            <tr>
+              <th scope="row">1</th>
+              <td>{{r.repairId | json}} </td>
+              <td>{{r.repairType | json}} </td>
+              <td>{{r.shortDescription | json}} </td>
+              <td>{{r.status | json}} </td>
+              <td>{{r.propertyOwner.name | json}} </td>
+              <td>{{r.propertyOwner.vatNumber | json}} </td>
+              <td>{{r.property.propertyId | json}} </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
