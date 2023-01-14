@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import {ReactiveFormsModule} from "@angular/forms";
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { LoginPageComponent } from './components/login/login.component';
@@ -14,7 +15,13 @@ import { AboutusComponent } from './core/aboutus/aboutus.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { NotfoundComponent } from './core/notfound/notfound.component';
 import { RegisterComponent } from './components/register/register.component';
-
+import { OwnersAndPropertiesComponent } from './components/admin/owners-and-properties/owners-and-properties.component';
+import { EditOwnerPageComponent } from './components/admin/owners-and-properties/edit-owner-page/edit-owner-page.component';
+import { SearchOwnerPageComponent } from './components/admin/owners-and-properties/search-owner-page/search-owner-page.component';
+import { CreateOwnerPageComponent } from './components/admin/owners-and-properties/create-owner-page/create-owner-page.component';
+import { RepairsComponent } from './components/admin/repairs/repairs.component';
+import { CreateRepairComponent } from './components/admin/repairs/create-repair/create-repair.component';
+import { SearchRepairComponent } from './components/admin/repairs/search-repair/search-repair.component';
 
 @NgModule({
   declarations: [
@@ -27,13 +34,21 @@ import { RegisterComponent } from './components/register/register.component';
     AboutusComponent,
     FooterComponent,
     NotfoundComponent,
-    RegisterComponent
+    RegisterComponent,
+    OwnersAndPropertiesComponent,
+    CreateOwnerPageComponent,
+    EditOwnerPageComponent,
+    SearchOwnerPageComponent,
+    RepairsComponent,
+    CreateRepairComponent,
+    SearchRepairComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
