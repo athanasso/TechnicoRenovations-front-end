@@ -3,8 +3,7 @@ import { AdminServiceService } from 'src/app/services/admin/admin-service.servic
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  templateUrl: './home.component.html'
 })
 export class AdminHomeComponent {
 
@@ -14,7 +13,7 @@ export class AdminHomeComponent {
   constructor(private service: AdminServiceService) { }
 
   ngOnInit(): void {
-    this.service.getPendingRepairs().subscribe({
+    this.service.getPropertyRepairs().subscribe({
       next: data => {
         this.response = data;
         console.log(this.response);
