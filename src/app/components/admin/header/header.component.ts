@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class AdminHeaderComponent {
-
+  showDropdown1 = false;
+  showDropdown2 = false;
 }

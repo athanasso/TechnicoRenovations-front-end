@@ -5,8 +5,22 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="/admin/home">Home</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="">About</a>
+      <li class="nav-item dropdown"
+          (mouseenter)="showDropdown1 = true" (mouseleave)="showDropdown1 = false">
+        <a class="nav-link" routerLink="/admin/owners_properties">Owners & Properties</a>
+        <div class="dropdown-menu" [class.show]="showDropdown1">
+          <a class="dropdown-item" routerLink="/admin/owners_properties/create-owner">Register user</a>
+          <a class="dropdown-item" routerLink="/admin/owners_properties/edit-owner">Edit user</a>
+          <a class="dropdown-item" routerLink="/admin/owners_properties/search-owner">Search user</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown"
+          (mouseenter)="showDropdown2 = true" (mouseleave)="showDropdown2 = false">
+        <a class="nav-link" routerLink="/admin/repairs">Repairs</a>
+        <div class="dropdown-menu" [class.show]="showDropdown2">
+          <a class="dropdown-item" routerLink="/admin/repairs/create-repair">Create repair</a>
+          <a class="dropdown-item" routerLink="/admin/repairs/search-repair">Search repair</a>
+        </div>
       </li>
     </ul>
   </div>
