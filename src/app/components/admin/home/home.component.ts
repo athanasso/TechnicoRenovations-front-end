@@ -22,5 +22,4 @@ export class AdminHomeComponent {
       complete: () => this.message = "Completed..."
     });
   }
-
 }

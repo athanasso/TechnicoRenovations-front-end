@@ -22,5 +22,4 @@ export class UserHomeComponent implements OnInit{
       complete: () => this.message = "Completed..."
     });
   }
-
 }

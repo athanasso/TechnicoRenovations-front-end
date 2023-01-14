@@ -1,4 +1,6 @@
-import { RepairsComponent } from './components/admin/repairs/repairs.component';
+import { PropertyDetailsComponent } from './components/user/property-details/property-details.component';
+import { UserDetailsComponent } from './components/user/user-details/user-details.component';
+import { AdminRepairsComponent } from './components/admin/repairs/repairs.component';
 import { SearchRepairComponent } from './components/admin/repairs/search-repair/search-repair.component';
 import { CreateRepairComponent } from './components/admin/repairs/create-repair/create-repair.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -13,6 +15,7 @@ import { CreateOwnerPageComponent } from './components/admin/owners-and-properti
 import { EditOwnerPageComponent } from './components/admin/owners-and-properties/edit-owner-page/edit-owner-page.component';
 import { OwnersAndPropertiesComponent } from './components/admin/owners-and-properties/owners-and-properties.component';
 import { SearchOwnerPageComponent } from './components/admin/owners-and-properties/search-owner-page/search-owner-page.component';
+import { UserRepairsComponent } from './components/user/repairs/repairs.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
@@ -20,12 +23,15 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'aboutus', component: AboutusComponent },
   { path: 'user/home', component: UserHomeComponent },
+  { path: 'user/user-details', component: UserDetailsComponent },
+  { path: 'user/property-details', component: PropertyDetailsComponent },
+  { path: 'user/repairs', component: UserRepairsComponent },
   { path: 'admin/home', component: AdminHomeComponent },
   { path: 'admin/owners_properties', component: OwnersAndPropertiesComponent },
   { path: 'admin/owners_properties/create-owner', component: CreateOwnerPageComponent },
   { path: 'admin/owners_properties/edit-owner', component: EditOwnerPageComponent },
   { path: 'admin/owners_properties/search-owner', component: SearchOwnerPageComponent },
-  { path: 'admin/repairs', component: RepairsComponent },
+  { path: 'admin/repairs', component: AdminRepairsComponent },
   { path: 'admin/repairs/create-repair', component: CreateRepairComponent },
   { path: 'admin/repairs/search-repair', component: SearchRepairComponent },
   { path: 'not-found', component: NotfoundComponent },

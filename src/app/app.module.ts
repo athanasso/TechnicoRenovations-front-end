@@ -19,9 +19,12 @@ import { OwnersAndPropertiesComponent } from './components/admin/owners-and-prop
 import { EditOwnerPageComponent } from './components/admin/owners-and-properties/edit-owner-page/edit-owner-page.component';
 import { SearchOwnerPageComponent } from './components/admin/owners-and-properties/search-owner-page/search-owner-page.component';
 import { CreateOwnerPageComponent } from './components/admin/owners-and-properties/create-owner-page/create-owner-page.component';
-import { RepairsComponent } from './components/admin/repairs/repairs.component';
+import { AdminRepairsComponent } from './components/admin/repairs/repairs.component';
 import { CreateRepairComponent } from './components/admin/repairs/create-repair/create-repair.component';
 import { SearchRepairComponent } from './components/admin/repairs/search-repair/search-repair.component';
+import { UserDetailsComponent } from './components/user/user-details/user-details.component';
+import { PropertyDetailsComponent } from './components/user/property-details/property-details.component';
+import { UserRepairsComponent } from './components/user/repairs/repairs.component';
 
 @NgModule({
   declarations: [
@@ -39,9 +42,12 @@ import { SearchRepairComponent } from './components/admin/repairs/search-repair/
     CreateOwnerPageComponent,
     EditOwnerPageComponent,
     SearchOwnerPageComponent,
-    RepairsComponent,
+    AdminRepairsComponent,
     CreateRepairComponent,
     SearchRepairComponent,
+    UserDetailsComponent,
+    PropertyDetailsComponent,
+    UserRepairsComponent
   ],
   imports: [
     BrowserModule,

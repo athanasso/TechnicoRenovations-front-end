@@ -1,2 +1,48 @@
 <admin-header></admin-header>
-<p>repairs works!</p>
+<div class="container">
+  <div class="jumbotron text-center">
+    <h1 class="display-4">Welcome Admin</h1>
+    <hr class="my-4">
+    <h2 class="display-6"> Active repairs of the day</h2>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Index</th>
+            <th>Id</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Cost</th>
+            <th>Owner Name</th>
+            <th>Owner Vat</th>
+            <th>Property Id</th>
+            <th>Property Address</th>
+            <th>Property Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let r of response.data">
+            <ng-container *ngIf="r.status=='PENDING'">
+              <tr>
+                <th scope="row">1</th>
+                <td>{{r.repairId}} </td>
+                <td>{{r.repairType}} </td>
+                <td>{{r.shortDescription}} </td>
+                <td>{{r.status}} </td>
+                <td>{{r.proposedCost}} </td>
+                <td>{{r.propertyOwner.name}} </td>
+                <td>{{r.propertyOwner.vatNumber}} </td>
+                <td>{{r.property.propertyId}} </td>
+                <td>{{r.property.propertyAddress}} </td>
+                <td>{{r.property.propertyType}} </td>
+              </tr>
+            </ng-container>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
