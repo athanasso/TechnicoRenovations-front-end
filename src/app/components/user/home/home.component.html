@@ -1,7 +1,7 @@
 <user-header></user-header>
 <div class="container">
   <div class="jumbotron text-center">
-    <h1 class="display-4">Welcome User</h1>
+    <h1 class="display-4">Welcome {{user.name}}</h1>
     <hr class="my-4">
     <h2 class="display-6"> Your repairs</h2>
   </div>
@@ -17,6 +17,8 @@
             <th>Description</th>
             <th>Status</th>
             <th>Cost</th>
+            <th>Actual Dates</th>
+            <th>Proposed Dates</th>
           </tr>
         </thead>
         <tbody>
@@ -29,6 +31,8 @@
                 <td>{{r.shortDescription}} </td>
                 <td>{{r.status}} </td>
                 <td>{{r.proposedCost}} </td>
+                <td>{{r.actualStartDate}} - {{r.actualEndDate}}</td>
+                <td>{{r.proposedStartDate}} - {{r.proposedEndDate}}</td>
               </tr>
           </ng-container>
         </tbody>

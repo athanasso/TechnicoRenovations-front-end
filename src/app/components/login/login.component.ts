@@ -1,3 +1,4 @@
+import { LoggedUserService } from './../../services/logged-user.service';
 import { AuthServiceService } from './../../services/auth/auth-service.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -9,11 +10,11 @@ import { Router } from '@angular/router';
 })
 export class LoginPageComponent implements OnInit {
 
-  public user: any;
+  user: any;
   login : any;
   message = '';
 
-  constructor(private router: Router, private service: AuthServiceService, private fb: FormBuilder) {}
+  constructor(private router: Router, private service: AuthServiceService, private fb: FormBuilder, private loggedUser: LoggedUserService) {}
 
   userLoginForm: FormGroup = this.fb.group({
     username: this.fb.control(""),
@@ -41,10 +42,12 @@ export class LoginPageComponent implements OnInit {
       complete: () => this.message = "Completed..."
     });
 
-    if (this.user && this.user.typeOfUser=="user"){
+    this.loggedUser.data = this.user;
+
+    if (this.user.typeOfUser=="user"){
       this.router.navigate(['user/home']);
     }
-    if (this.user && this.user.typeOfUser=="admin"){
+    if (this.user.typeOfUser=="admin"){
       this.router.navigate(['admin/home']);
     }
   }
