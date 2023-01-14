@@ -1,0 +1,61 @@
+<admin-header></admin-header>
+<div class="container">
+  <div class="jumbotron text-center">
+    <h1 class="display-4">Welcome Admin</h1>
+    <hr class="my-4">
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <h2>Register a user</h2>
+      <p><a class="btn btn-secondary" routerLink="/admin/owners_properties/create-owner" role="button">Create a user »</a></p>
+    </div>
+    <div class="col-md-4">
+      <h2>Edit a user</h2>
+      <p><a class="btn btn-secondary" routerLink="/admin/owners_properties/edit-owner" role="button">Edit a user »</a></p>
+    </div>
+    <div class="col-md-4">
+      <h2>Search a user</h2>
+      <p><a class="btn btn-secondary" routerLink="/admin/owners_properties/search-owner" role="button">Search a user »</a></p>
+    </div>
+  </div>
+  <hr class="my-4">
+  <h2 class="display-6 text-center"> List of all repairs</h2>
+  <div class="row">
+    <div class="col-md-4">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Index</th>
+            <th>Id</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Cost</th>
+            <th>Owner Name</th>
+            <th>Owner Vat</th>
+            <th>Property Id</th>
+            <th>Property Address</th>
+            <th>Property Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let r of response.data">
+              <tr>
+                <th scope="row">1</th>
+                <td>{{r.repairId | json}} </td>
+                <td>{{r.repairType | json}} </td>
+                <td>{{r.shortDescription | json}} </td>
+                <td>{{r.status | json}} </td>
+                <td>{{r.proposedCost | json}} </td>
+                <td>{{r.propertyOwner.name | json}} </td>
+                <td>{{r.propertyOwner.vatNumber | json}} </td>
+                <td>{{r.property.propertyId | json}} </td>
+                <td>{{r.property.propertyAddress | json}} </td>
+                <td>{{r.property.propertyType | json}} </td>
+              </tr>
+            </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<admin-header></admin-header>
+<div class="container">
+  <div class="container">
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="searchQuery" placeholder="Search...">
+      <button class="btn btn-primary" (click)="search()">Search</button>
+    </div>
+  </div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>VatNumber</th>
+      <th>Name</th>
+      <th>Surname</th>
+      <th>Address</th>
+      <th>Phone Number</th>
+      <th>Email</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let owner of filteredResponse">
+      <td>{{ owner.vatNumber }}</td>
+      <td>{{ owner.name }}</td>
+      <td>{{ owner.surname }}</td>
+      <td>{{ owner.address }}</td>
+      <td>{{ owner.phoneNumber }}</td>
+      <td>{{ owner.email }}</td>
+      <td>{{ owner.typeOfUser }}</td>
+    </tr>
+  </tbody>
+</table>
