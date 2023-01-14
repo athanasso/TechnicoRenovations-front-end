@@ -1,0 +1,38 @@
+<admin-header></admin-header>
+<div class="container">
+  <div class="container">
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="searchQuery" placeholder="Search...">
+      <button class="btn btn-primary" (click)="search()">Search</button>
+    </div>
+  </div>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Accepted</th>
+      <th>Status</th>
+      <th>Repair Id</th>
+      <th>Property Id</th>
+      <th>Owner Id</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Cost</th>
+      <th>Actual Dates</th>
+      <th>Proposed Dates</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let repair of filteredResponse">
+      <td>{{ repair.accepted }}</td>
+      <td>{{ repair.status }}</td>
+      <td>{{ repair.repairId }}</td>
+      <td>{{ repair.property.propertyId }}</td>
+      <td>{{ repair.propertyOwner.vatNumber }}</td>
+      <td>{{ repair.description }}</td>
+      <td>{{ repair.repairType }}</td>
+      <td>{{ repair.proposedCost }}</td>
+      <td>{{ repair.actualStartDate | date:'short'}} - {{ repair.actualEndDate | date:'short'}}</td>
+      <td>{{ repair.proposedStartDate | date:'short'}} - {{ repair.proposedEndDate | date:'short'}}</td>
+    </tr>
+  </tbody>
+</table>
