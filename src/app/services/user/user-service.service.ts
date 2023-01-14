@@ -35,4 +35,59 @@ export class UserServiceService {
         catchError(error => throwError(() => 'Something is wrong...'))
       );
   }
+
+  updateUsername(data:any){
+    const headers = new HttpHeaders()
+    .set('Content-Type', 'application/json');
+
+    return this.http.post(this.correctOwnerUsernameEndPoint, JSON.stringify(data), { headers: headers })
+      .pipe(
+        retry(1),
+        catchError(error => throwError(() => 'Something is wrong...'))
+      );
+  }
+
+  updateEmail(data:any){
+    const headers = new HttpHeaders()
+    .set('Content-Type', 'application/json');
+
+    return this.http.post(this.correctOwnerEmailEndPoint, JSON.stringify(data), { headers: headers })
+      .pipe(
+        retry(1),
+        catchError(error => throwError(() => 'Something is wrong...'))
+      );
+  }
+
+  updatePassword(data:any){
+    const headers = new HttpHeaders()
+    .set('Content-Type', 'application/json');
+
+    return this.http.post(this.correctOwnerPasswordEndPoint, JSON.stringify(data), { headers: headers })
+      .pipe(
+        retry(1),
+        catchError(error => throwError(() => 'Something is wrong...'))
+      );
+  }
+
+  deleteOwner(data:any){
+    const headers = new HttpHeaders()
+    .set('Content-Type', 'application/json');
+
+    return this.http.post(this.deleteOwnerEndPoint, JSON.stringify(data), { headers: headers })
+      .pipe(
+        retry(1),
+        catchError(error => throwError(() => 'Something is wrong...'))
+      );
+  }
+
+  createRepair(data:any){
+    const headers = new HttpHeaders()
+    .set('Content-Type', 'application/json');
+
+    return this.http.post(this.createRepairEndPoint, JSON.stringify(data), { headers: headers })
+      .pipe(
+        retry(1),
+        catchError(error => throwError(() => 'Something is wrong...'))
+      );
+  }
 }
