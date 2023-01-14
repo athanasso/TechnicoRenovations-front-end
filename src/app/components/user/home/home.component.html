@@ -1,26 +1,38 @@
 <user-header></user-header>
 <div class="container">
   <div class="jumbotron text-center">
-    <h1 class="display-4">Welcome to Technicon Renovations</h1>
-    <p class="lead">This is the home page of user.</p>
+    <h1 class="display-4">Welcome User</h1>
     <hr class="my-4">
-    <p>It uses Angular and Bootstrap to create a responsive and user-friendly interface.</p>
-    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+    <h2 class="display-6"> Your repairs</h2>
   </div>
   <div class="row">
     <div class="col-md-4">
-      <h2>User details</h2>
-      <p>*ngIf="user"> {{response.data | json}} </p>
-      <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
-    </div>
-    <div class="col-md-4">
-      <h2>Properties</h2>
-      <p *ngIf="response"> {{response.data | json}} </p>
-    </div>
-    <div class="col-md-4">
-      <h2>Heading</h2>
-      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-      <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Index</th>
+            <th>Id</th>
+            <th>Property Id</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let r of response">
+              <tr>
+                <th scope="row">1</th>
+                <td>{{r.repairId}} </td>
+                <td>{{r.propertyId}} </td>
+                <td>{{r.repairType}} </td>
+                <td>{{r.shortDescription}} </td>
+                <td>{{r.status}} </td>
+                <td>{{r.proposedCost}} </td>
+              </tr>
+          </ng-container>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

@@ -13,9 +13,10 @@ export class UserHomeComponent implements OnInit{
   constructor(private service: UserServiceService) { }
 
   ngOnInit(): void {
-    this.service.getProperties().subscribe({
+    this.service.getRepairs().subscribe({
       next: data => {
         this.response = data;
+        this.response = this.response.data;
         console.log(this.response);
       },
       error: er => this.message = "Error" + er.message,
