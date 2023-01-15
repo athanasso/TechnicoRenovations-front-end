@@ -9,7 +9,6 @@ import { UserServiceService } from 'src/app/services/user/user-service.service';
 export class UserDetailsComponent {
 
   user : any;
-  response: any;
 
   constructor(private userService: UserServiceService, private loggedUser: LoggedUserService){
     this.user = loggedUser.data;
