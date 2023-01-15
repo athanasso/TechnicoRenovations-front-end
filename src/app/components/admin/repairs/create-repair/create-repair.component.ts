@@ -23,10 +23,6 @@ export class CreateRepairComponent {
 
   constructor(private router: Router, private service: UserServiceService, private fb: FormBuilder) {}
 
-  goToLogin() {
-    this.router.navigate(['/login']);
-  }
-
   repairRegisterForm: FormGroup = this.fb.group({
     OwnerVatNumber: this.fb.control(""),
     propertyId: this.fb.control(""),
@@ -46,7 +42,7 @@ export class CreateRepairComponent {
       "repairType": this.repairRegisterForm.get("repairType")?.value
     };
 
-    //this.router.navigate(['/login']);
+    this.router.navigate(['admin/home']);
 
     this.service.createRepair(this.register).subscribe({
       next: data => {

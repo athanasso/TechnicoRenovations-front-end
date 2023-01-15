@@ -32,7 +32,6 @@ export class PropertyDetailsComponent implements OnInit{
 
   ngOnInit(): void {
     this.properties = this.loggedUser.getProperties().data;
-    console.log(this.properties);
   }
 
   onSubmit() {
