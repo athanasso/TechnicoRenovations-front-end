@@ -1,3 +1,4 @@
+import { EditRepairComponent } from './components/user/repairs/edit-repair/edit-repair.component';
 import { PropertyDetailsComponent } from './components/user/property-details/property-details.component';
 import { UserDetailsComponent } from './components/user/user-details/user-details.component';
 import { AdminRepairsComponent } from './components/admin/repairs/repairs.component';
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'user/user-details', component: UserDetailsComponent },
   { path: 'user/property-details', component: PropertyDetailsComponent },
   { path: 'user/repairs', component: UserRepairsComponent },
+  { path: 'user/repairs/edit', component: EditRepairComponent },
   { path: 'admin/home', component: AdminHomeComponent },
   { path: 'admin/owners_properties', component: OwnersAndPropertiesComponent },
   { path: 'admin/owners_properties/create-owner', component: CreateOwnerPageComponent },

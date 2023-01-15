@@ -25,6 +25,7 @@ import { SearchRepairComponent } from './components/admin/repairs/search-repair/
 import { UserDetailsComponent } from './components/user/user-details/user-details.component';
 import { PropertyDetailsComponent } from './components/user/property-details/property-details.component';
 import { UserRepairsComponent } from './components/user/repairs/repairs.component';
+import { EditRepairComponent } from './components/user/repairs/edit-repair/edit-repair.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { UserRepairsComponent } from './components/user/repairs/repairs.componen
     SearchRepairComponent,
     UserDetailsComponent,
     PropertyDetailsComponent,
-    UserRepairsComponent
+    UserRepairsComponent,
+    EditRepairComponent
   ],
   imports: [
     BrowserModule,
