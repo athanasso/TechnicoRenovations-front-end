@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { LoggedUserService } from 'src/app/services/logged-user.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
@@ -11,7 +13,7 @@ export class AuthServiceService {
   private readonly loginEndPoint = 'http://localhost:8080/shop/api/auth/login';
   private readonly RegisterEndPoint = 'http://localhost:8080/shop/api/auth/register';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private service: LoggedUserService, private router: Router) { }
 
   getUser(data:any){
     const headers = new HttpHeaders()
@@ -33,5 +35,10 @@ export class AuthServiceService {
         retry(1),
         catchError(error => throwError(() => 'Something is wrong...'))
       );
+  }
+
+  signOut(){
+    this.service.clearData();
+    this.router.navigate(['/login']);
   }
 }

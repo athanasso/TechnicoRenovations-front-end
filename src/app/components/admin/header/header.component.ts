@@ -1,3 +1,4 @@
+import { AuthServiceService } from './../../../services/auth/auth-service.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -12,6 +13,12 @@ export class AdminHeaderComponent {
     this.showMenu = !this.showMenu;
   }
 
+  constructor(private authService: AuthServiceService) {}
+
   showDropdown1 = false;
   showDropdown2 = false;
+
+  signOut() {
+    this.authService.signOut();
+  }
 }

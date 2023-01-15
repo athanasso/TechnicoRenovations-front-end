@@ -1,3 +1,4 @@
+import { AuthServiceService } from 'src/app/services/auth/auth-service.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -10,5 +11,11 @@ export class UserHeaderComponent {
 
   toggleMenu() {
     this.showMenu = !this.showMenu;
+  }
+
+  constructor(private authService: AuthServiceService) {}
+
+  signOut() {
+    this.authService.signOut();
   }
 }
