@@ -12,12 +12,10 @@ import { UserServiceService } from 'src/app/services/user/user-service.service';
 export class LoginPageComponent implements OnInit {
 
   user: any;
-  properties: any;
-  repairs: any;
   login : any;
   message = '';
 
-  constructor(private router: Router, private service: AuthServiceService, private fb: FormBuilder, private loggedUser: LoggedUserService,private userService: UserServiceService) {}
+  constructor(private router: Router, private adminService: AuthServiceService, private fb: FormBuilder, private loggedUser: LoggedUserService,private userService: UserServiceService) {}
 
   userLoginForm: FormGroup = this.fb.group({
     username: this.fb.control(""),
@@ -36,20 +34,33 @@ export class LoginPageComponent implements OnInit {
       "password": this.userLoginForm.get("password")?.value
     };
 
-    this.service.getUser(this.login).subscribe({
+    this.adminService.getUser(this.login).subscribe({
       next: data => {
-        this.user = data;
-        console.log(this.user);
+        this.loggedUser.setUser(data);
       },
       error: er => this.message = "Error" + er.message,
       complete: () => this.message = "Completed..."
     });
 
-    this.loggedUser.user = this.user;
+    this.user = this.loggedUser.getUser();
 
     if (this.user.typeOfUser=="user"){
-      this.properties = this.userService.getProperties();
-      this.repairs = this.userService.getRepairs();
+      this.userService.getProperties(this.user.vatNumber).subscribe({
+        next: data => {
+          this.loggedUser.setProperties(data);
+        },
+        error: er => this.message = "Error" + er.message,
+        complete: () => this.message = "Completed..."
+      });
+
+      this.userService.getRepairs(this.user.vatNumber).subscribe({
+        next: data => {
+          this.loggedUser.setRepairs(data);
+        },
+        error: er => this.message = "Error" + er.message,
+        complete: () => this.message = "Completed..."
+      });
+
       this.router.navigate(['user/home']);
     }
     if (this.user.typeOfUser=="admin"){

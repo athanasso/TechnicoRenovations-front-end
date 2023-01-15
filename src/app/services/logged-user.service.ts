@@ -28,14 +28,14 @@ export class LoggedUserService {
 
   setProperties(data: any) {
     localStorage.setItem('properties', JSON.stringify(data));
-    this.user = data;
+    this.properties = data;
   }
 
   getProperties() {
     const data = localStorage.getItem('properties');
     if (data) {
-        this.user = JSON.parse(data);
-        return this.user;
+        this.properties = JSON.parse(data);
+        return this.properties;
     } else {
         return null;
     }
@@ -43,14 +43,14 @@ export class LoggedUserService {
 
   setRepairs(data: any) {
     localStorage.setItem('repairs', JSON.stringify(data));
-    this.user = data;
+    this.repairs = data;
   }
 
   getRepairs() {
     const data = localStorage.getItem('repairs');
     if (data) {
-        this.user = JSON.parse(data);
-        return this.user;
+        this.repairs = JSON.parse(data);
+        return this.repairs;
     } else {
         return null;
     }

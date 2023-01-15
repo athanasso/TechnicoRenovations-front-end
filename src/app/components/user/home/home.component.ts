@@ -8,23 +8,15 @@ import { LoggedUserService } from 'src/app/services/logged-user.service';
 })
 export class UserHomeComponent implements OnInit{
 
-  response: any;
-  message = '';
   user : any;
+  properties : any;
+  repairs : any;
 
-  constructor(private service: UserServiceService, private loggedUser: LoggedUserService){
-    this.user = loggedUser.user;
-  }
+  constructor(private service: UserServiceService, private loggedUser: LoggedUserService){}
 
   ngOnInit(): void {
-    this.service.getRepairs().subscribe({
-      next: data => {
-        this.response = data;
-        this.response = this.response.data;
-        console.log(this.response);
-      },
-      error: er => this.message = "Error" + er.message,
-      complete: () => this.message = "Completed..."
-    });
+    this.user = this.loggedUser.getUser();
+    this.properties = this.loggedUser.getProperties().data;
+    this.repairs = this.loggedUser.getRepairs().data;
   }
 }
