@@ -12,7 +12,7 @@ export class UserHomeComponent implements OnInit{
   properties : any;
   repairs : any;
 
-  constructor(private service: UserServiceService, private loggedUser: LoggedUserService){}
+  constructor(private loggedUser: LoggedUserService){}
 
   ngOnInit(): void {
     this.user = this.loggedUser.getUser();

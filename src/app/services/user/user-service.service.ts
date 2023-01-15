@@ -94,11 +94,33 @@ export class UserServiceService implements OnInit{
       );
   }
 
+  deleteProperty(data:any){
+    const headers = new HttpHeaders()
+    .set('Content-Type', 'application/json');
+
+    return this.http.post(this.deletePropertyEndPoint, JSON.stringify(data), { headers: headers })
+      .pipe(
+        retry(1),
+        catchError(error => throwError(() => 'Something is wrong...'))
+      );
+  }
+
   createRepair(data:any){
     const headers = new HttpHeaders()
     .set('Content-Type', 'application/json');
 
     return this.http.post(this.createRepairEndPoint, JSON.stringify(data), { headers: headers })
+      .pipe(
+        retry(1),
+        catchError(error => throwError(() => 'Something is wrong...'))
+      );
+  }
+
+  createProperty(data:any){
+    const headers = new HttpHeaders()
+    .set('Content-Type', 'application/json');
+
+    return this.http.post(this.createPropertyEndPoint, JSON.stringify(data), { headers: headers })
       .pipe(
         retry(1),
         catchError(error => throwError(() => 'Something is wrong...'))

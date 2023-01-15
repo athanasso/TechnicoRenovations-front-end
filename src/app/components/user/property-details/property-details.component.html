@@ -1,2 +1,63 @@
 <user-header></user-header>
-<p>property-details works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Index</th>
+            <th>Id</th>
+            <th>Address</th>
+            <th>Type</th>
+            <th>Construction year</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let p of properties">
+              <tr>
+                <th scope="row">1</th>
+                <td>{{p.propertyId}} </td>
+                <td>{{p.propertyAddress}} </td>
+                <td>{{p.propertyType}} </td>
+                <td>{{p.yearOfConstruction}} </td>
+                <td><button class="btn btn-danger" (click)="deleteProperty(p.propertyId)">Delete</button></td>
+              </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row border border-dark rounded-2">
+    <div class="col-md-12">
+      <h1>Register a property</h1>
+      <form method="post" [formGroup]="propertyRegisterForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="propertyId">PropertyId</label>
+          <input formControlName="propertyId" type="text" class="form-control" id="propertyId" aria-describedby="propertyIdHelp"
+            placeholder="Enter propertyId" />
+        </div>
+        <div class="form-group">
+          <label for="propertyAddress">Address</label>
+          <input formControlName="propertyAddress" type="text" class="form-control" id="propertyAddress" placeholder="propertyAddress" />
+        </div>
+        <div class="form-group">
+          <label for="yearOfConstruction">Construction year</label>
+          <input formControlName="yearOfConstruction" type="text" class="form-control" id="yearOfConstruction" placeholder="yearOfConstruction" />
+        </div>
+        <div class="form-group">
+          <label for="propertyType">Type</label>
+          <div class="form-check" *ngFor="let option of propertyTypeOptions">
+            <input class="form-check-input" type="radio" name="propertyType" formControlName="propertyType" [value]="option.value">
+            <label class="form-check-label">{{ option.label }}</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="vatNumber">Your vat Number</label>
+          <input formControlName="vatNumber" type="text" class="form-control" id="vatNumber" placeholder="vatNumber" />
+        </div>
+        <div class="form-group mt-1">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
+</div>
