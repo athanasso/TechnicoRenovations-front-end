@@ -1,6 +1,7 @@
+import { LoggedUserService } from 'src/app/services/logged-user.service';
 import { Component, OnInit } from '@angular/core';
-import { AdminServiceService } from 'src/app/services/admin/admin-service.service';
 import { UserServiceService } from 'src/app/services/user/user-service.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-owner-page',
@@ -9,31 +10,31 @@ import { UserServiceService } from 'src/app/services/user/user-service.service';
 export class EditOwnerPageComponent implements OnInit {
 
   searchQuery!: string;
-  response: any;
   filteredResponse: any;
-  message = '';
+  users: any;
 
-  constructor(private adminService: AdminServiceService,private userService: UserServiceService) { }
+  emailControl = new FormControl('');
+  passwordControl = new FormControl('');
+  usernameControl = new FormControl('');
+
+  constructor(private service: LoggedUserService,private userService: UserServiceService) { }
 
   ngOnInit(): void {
-    this.adminService.getOwners().subscribe({
-      next: data => {
-        this.response = data;
-      },
-      error: er => this.message = "Error" + er.message,
-      complete: () => this.message = "Completed..."
-    });
+    this.users = this.service.getOwners();
   }
 
    search() {
     if (!this.searchQuery) {
-      this.filteredResponse = this.response.data;
+      this.filteredResponse = this.users.data;
     } else {
-      this.filteredResponse = this.response.data.filter((owner: { email: string; vatNumber: number; }) => {
+      this.filteredResponse = this.users.data.filter((owner: { email: string; vatNumber: number; }) => {
         return owner.email.toLowerCase().includes(this.searchQuery.toLowerCase())
         || owner.vatNumber == parseInt(this.searchQuery);
       });
     }
+    this.emailControl.setValue(this.filteredResponse.email);
+    this.passwordControl.setValue(this.filteredResponse.password);
+    this.usernameControl.setValue(this.filteredResponse.username);
   }
 
   deleteUser(item:any) {
@@ -48,30 +49,38 @@ export class EditOwnerPageComponent implements OnInit {
   }
 
   updateItem(item: any) {
-    this.userService.updateEmail(item).subscribe(
-      (res: any) => {
-        console.log(res);
-      },
-      (err: any) => {
-        console.log(err);
-      }
-    );
-    this.userService.updatePassword(item).subscribe(
-      (res: any) => {
-        console.log(res);
-      },
-      (err: any) => {
-        console.log(err);
-      }
-    );
-    this.userService.updateUsername(item).subscribe(
-      (res: any) => {
-        console.log(res);
-      },
-      (err: any) => {
-        console.log(err);
-      }
-    );
+    // check if the email has changed
+    if (this.emailControl.value !== item.email) {
+      this.userService.updateEmail({email: this.emailControl.value}).subscribe(
+        (res: any) => {
+          console.log(res);
+        },
+        (err: any) => {
+          console.log(err);
+        }
+      );
+    }
+    // check if the password has changed
+    if (this.passwordControl.value !== item.password) {
+      this.userService.updatePassword({password: this.passwordControl.value}).subscribe(
+        (res: any) => {
+          console.log(res);
+        },
+        (err: any) => {
+          console.log(err);
+        }
+      );
+    }
+    // check if the username has changed
+    if (this.usernameControl.value !== item.username) {
+      this.userService.updateUsername({username: this.usernameControl.value}).subscribe(
+        (res: any) => {
+          console.log(res);
+        },
+        (err: any) => {
+          console.log(err);
+        }
+      );
+    }
   }
 }
-

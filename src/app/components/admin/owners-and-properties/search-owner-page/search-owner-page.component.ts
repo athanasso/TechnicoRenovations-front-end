@@ -1,3 +1,4 @@
+import { LoggedUserService } from 'src/app/services/logged-user.service';
 import { Component, OnInit } from '@angular/core';
 import { AdminServiceService } from 'src/app/services/admin/admin-service.service';
 
@@ -6,28 +7,20 @@ import { AdminServiceService } from 'src/app/services/admin/admin-service.servic
   templateUrl: './search-owner-page.component.html'
 })
 export class SearchOwnerPageComponent implements OnInit{
+
   searchQuery!: string;
-  response: any;
   filteredResponse: any;
-  message = '';
+  owners: any;
 
-
-  constructor(private service: AdminServiceService) { }
+  constructor(private service: LoggedUserService) { }
 
   ngOnInit(): void {
-    this.service.getOwners().subscribe({
-      next: data => {
-        this.response = data;
-        console.log(this.response);
-      },
-      error: er => this.message = "Error" + er.message,
-      complete: () => this.message = "Completed..."
-    });
+    this.owners = this.service.getOwners();
   }
 
   search() {
     if(this.searchQuery){
-      this.filteredResponse = this.response.data.filter((owner: { email: string; vatNumber: number; }) => {
+      this.filteredResponse = this.owners.data.filter((owner: { email: string; vatNumber: number; }) => {
         return owner.email.toLowerCase().includes(this.searchQuery.toLowerCase())
         || owner.vatNumber == parseInt(this.searchQuery);
       });

@@ -44,6 +44,8 @@ export class RegisterComponent implements OnInit {
       "phoneNumber": this.userRegisterForm.get("phoneNumber")?.value,
     };
 
+    this.router.navigate(['/login']);
+
     this.service.register(this.register).subscribe({
       next: data => {
         this.response = data;
@@ -51,8 +53,5 @@ export class RegisterComponent implements OnInit {
       error: er => this.message = "Error" + er.message,
       complete: () => this.message = "Completed..."
     });
-    if(this.response){
-      this.router.navigate(['/login']);
-    }
   }
 }

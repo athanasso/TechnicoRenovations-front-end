@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AdminServiceService } from 'src/app/services/admin/admin-service.service';
+import { LoggedUserService } from 'src/app/services/logged-user.service';
 
 @Component({
   selector: 'app-home',
@@ -7,19 +7,15 @@ import { AdminServiceService } from 'src/app/services/admin/admin-service.servic
 })
 export class AdminHomeComponent {
 
-  response: any;
-  message = '';
+  user : any;
+  properties : any;
+  repairs : any;
 
-  constructor(private service: AdminServiceService) { }
+  constructor(private loggedUser: LoggedUserService) { }
 
   ngOnInit(): void {
-    this.service.getPropertyRepairs().subscribe({
-      next: data => {
-        this.response = data;
-        console.log(this.response);
-      },
-      error: er => this.message = "Error" + er.message,
-      complete: () => this.message = "Completed..."
-    });
+    this.user = this.loggedUser.getUser();
+    this.properties = this.loggedUser.getProperties();
+    this.repairs = this.loggedUser.getRepairs();
   }
 }

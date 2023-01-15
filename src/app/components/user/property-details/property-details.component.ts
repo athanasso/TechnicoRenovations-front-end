@@ -27,7 +27,7 @@ export class PropertyDetailsComponent implements OnInit{
     propertyAddress: this.fb.control(""),
     yearOfConstruction: this.fb.control(""),
     propertyType: this.fb.control(""),
-    vatNumber: this.fb.control("")
+    ownerVatNumber: this.fb.control("")
   });
 
   ngOnInit(): void {
@@ -41,10 +41,10 @@ export class PropertyDetailsComponent implements OnInit{
       "propertyAddress": this.propertyRegisterForm.get("propertyAddress")?.value,
       "yearOfConstruction": this.propertyRegisterForm.get("yearOfConstruction")?.value,
       "propertyType": this.propertyRegisterForm.get("propertyType")?.value,
-      "vatNumber": this.propertyRegisterForm.get("vatNumber")?.value
+      "ownerVatNumber": this.propertyRegisterForm.get("ownerVatNumber")?.value
     };
 
-    if (this.loggedUser.getUser().vatNumber == this.register.vatNumber){
+    if (this.loggedUser.getUser().vatNumber == this.register.ownerVatNumber){
       this.service.createProperty(this.register).subscribe({
         next: data => {
           this.response = data;
@@ -53,12 +53,16 @@ export class PropertyDetailsComponent implements OnInit{
         complete: () => this.message = "Completed..."
       });
     } else {
-      console.log("wrong vatNumber")
+      console.log("wrong ownerVatNumber")
     }
   }
 
-  deleteProperty(item:any) {
-    this.service.deleteProperty(item).subscribe(
+  deleteProperty(item: any[]) {
+    let obj = {
+      propertyId: item[0],
+      ownerVatNumber: item[1]
+    }
+    this.service.deleteProperty(obj).subscribe(
       (res: any) => {
         console.log(res);
       },

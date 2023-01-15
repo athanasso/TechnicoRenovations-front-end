@@ -28,7 +28,7 @@ export class CreateRepairComponent {
   }
 
   repairRegisterForm: FormGroup = this.fb.group({
-    vatNumber: this.fb.control(""),
+    OwnerVatNumber: this.fb.control(""),
     propertyId: this.fb.control(""),
     description: this.fb.control(""),
     shortDescription: this.fb.control(""),
@@ -39,12 +39,14 @@ export class CreateRepairComponent {
 
   onSubmit() {
     this.register = {
-      "vatNumber": this.repairRegisterForm.get("vatNumber")?.value,
+      "OwnerVatNumber": this.repairRegisterForm.get("OwnerVatNumber")?.value,
       "propertyId": this.repairRegisterForm.get("propertyId")?.value,
       "description": this.repairRegisterForm.get("description")?.value,
       "shortDescription": this.repairRegisterForm.get("shortDescription")?.value,
       "repairType": this.repairRegisterForm.get("repairType")?.value
     };
+
+    //this.router.navigate(['/login']);
 
     this.service.createRepair(this.register).subscribe({
       next: data => {
@@ -53,8 +55,5 @@ export class CreateRepairComponent {
       error: er => this.message = "Error" + er.message,
       complete: () => this.message = "Completed..."
     });
-    if(this.response){
-      this.router.navigate(['/login']);
-    }
   }
 }

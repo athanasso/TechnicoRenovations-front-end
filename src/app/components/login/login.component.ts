@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserServiceService } from 'src/app/services/user/user-service.service';
+import { AdminServiceService } from 'src/app/services/admin/admin-service.service';
 
 @Component({
   selector: 'app-login-page',
@@ -11,11 +12,12 @@ import { UserServiceService } from 'src/app/services/user/user-service.service';
 })
 export class LoginPageComponent implements OnInit {
 
+  owners: any;
   user: any;
   login : any;
   message = '';
 
-  constructor(private router: Router, private adminService: AuthServiceService, private fb: FormBuilder, private loggedUser: LoggedUserService,private userService: UserServiceService) {}
+  constructor(private router: Router, private auth: AuthServiceService, private fb: FormBuilder, private loggedUser: LoggedUserService,private userService: UserServiceService,private adminService: AdminServiceService) {}
 
   userLoginForm: FormGroup = this.fb.group({
     username: this.fb.control(""),
@@ -34,7 +36,7 @@ export class LoginPageComponent implements OnInit {
       "password": this.userLoginForm.get("password")?.value
     };
 
-    this.adminService.getUser(this.login).subscribe({
+    this.auth.getUser(this.login).subscribe({
       next: data => {
         this.loggedUser.setUser(data);
       },
@@ -63,7 +65,32 @@ export class LoginPageComponent implements OnInit {
 
       this.router.navigate(['user/home']);
     }
+
     if (this.user.typeOfUser=="admin"){
+      this.adminService.getProperties().subscribe({
+        next: data => {
+          this.loggedUser.setProperties(data);
+        },
+        error: er => this.message = "Error" + er.message,
+        complete: () => this.message = "Completed..."
+      });
+
+      this.adminService.getPropertyRepairs().subscribe({
+        next: data => {
+          this.loggedUser.setRepairs(data);
+        },
+        error: er => this.message = "Error" + er.message,
+        complete: () => this.message = "Completed..."
+      });
+
+      this.adminService.getOwners().subscribe({
+        next: data => {
+          this.loggedUser.setOwners(data);
+        },
+        error: er => this.message = "Error" + er.message,
+        complete: () => this.message = "Completed..."
+      });
+
       this.router.navigate(['admin/home']);
     }
   }

@@ -2,16 +2,16 @@
 <div class="container d-flex justify-content-center align-items-center">
   <div class="row border border-dark rounded-2">
     <div class="col-md-12">
-      <h1>Register</h1>
+      <h1>Register a repair</h1>
       <form method="post" [formGroup]="repairRegisterForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
-          <label for="vatNumber">Vat Number</label>
-          <input formControlName="vatNumber" type="text" class="form-control" id="vatNumber" aria-describedby="vatNumberHelp"
+          <label for="OwnerVatNumber">Vat Number</label>
+          <input formControlName="OwnerVatNumber" type="text" class="form-control" id="OwnerVatNumber" aria-describedby="OwnerVatNumberHelp"
             placeholder="Enter vatNumber" />
         </div>
         <div class="form-group">
           <label for="propertyId">Property Id</label>
-          <input formControlName="propertyId" type="text" class="form-control" id="propertyId" aria-describedby="propertyIdHelp" placeholder="Enter email" />
+          <input formControlName="propertyId" type="text" class="form-control" id="propertyId" aria-describedby="propertyIdHelp" placeholder="Enter Id" />
         </div>
         <div class="form-group">
           <label for="description">Description</label>

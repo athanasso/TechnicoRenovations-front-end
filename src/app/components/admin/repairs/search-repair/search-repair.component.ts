@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AdminServiceService } from 'src/app/services/admin/admin-service.service';
+import { LoggedUserService } from 'src/app/services/logged-user.service';
 
 @Component({
   selector: 'app-search-repair',
@@ -8,27 +8,19 @@ import { AdminServiceService } from 'src/app/services/admin/admin-service.servic
 export class SearchRepairComponent {
 
   searchQuery!: string;
-  response: any;
   filteredResponse: any;
-  message = '';
+  repairs: any;
 
-  constructor(private service: AdminServiceService) { }
+  constructor(private service: LoggedUserService) { }
 
   ngOnInit(): void {
-    this.service.getPropertyRepairs().subscribe({
-      next: data => {
-        this.response = data;
-        console.log(this.response);
-      },
-      error: er => this.message = "Error" + er.message,
-      complete: () => this.message = "Completed..."
-    });
+    this.repairs = this.service.getRepairs();
   }
 
   search() {
-    this.filteredResponse = this.response.data.filter((repair: { repairId: any; propertyOwner: { vatNumber: number; }; }) => {
+    this.filteredResponse = this.repairs.data.filter((repair: { repairId: any; propertyOwner: { vatNumber: number; }; }) => {
       return repair.repairId
       || repair.propertyOwner.vatNumber == parseInt(this.searchQuery);
     });
-}
+  }
 }

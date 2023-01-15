@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class LoggedUserService {
 
+  owners: any;
   user: any;
   properties: any;
   repairs: any;
@@ -56,10 +57,26 @@ export class LoggedUserService {
     }
   }
 
+  setOwners(data: any) {
+    localStorage.setItem('owners', JSON.stringify(data));
+    this.owners = data;
+  }
+
+  getOwners() {
+    const data = localStorage.getItem('owners');
+    if (data) {
+        this.user = JSON.parse(data);
+        return this.user;
+    } else {
+        return null;
+    }
+  }
+
   clearData() {
     localStorage.removeItem('user');
     localStorage.removeItem('properties');
     localStorage.removeItem('repairs');
+    localStorage.removeItem('owners');
     this.user = null;
     this.properties = null;
     this.repairs = null;

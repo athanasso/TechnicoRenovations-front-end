@@ -20,7 +20,7 @@
                 <td>{{p.propertyAddress}} </td>
                 <td>{{p.propertyType}} </td>
                 <td>{{p.yearOfConstruction}} </td>
-                <td><button class="btn btn-danger" (click)="deleteProperty(p.propertyId)">Delete</button></td>
+                <td><button class="btn btn-danger" (click)="deleteProperty([p.propertyId, p.ownerVatNumber])">Delete</button></td>
               </tr>
           </ng-container>
         </tbody>
@@ -52,8 +52,8 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="vatNumber">Your vat Number</label>
-          <input formControlName="vatNumber" type="text" class="form-control" id="vatNumber" placeholder="vatNumber" />
+          <label for="ownerVatNumber">Your vat Number</label>
+          <input formControlName="ownerVatNumber" type="text" class="form-control" id="ownerVatNumber" placeholder="vatNumber" />
         </div>
         <div class="form-group mt-1">
           <button type="submit" class="btn btn-primary">Submit</button>
