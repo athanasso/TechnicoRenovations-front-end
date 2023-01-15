@@ -5,20 +5,52 @@ import { Injectable } from '@angular/core';
 })
 export class LoggedUserService {
 
-  data: any;
+  user: any;
+  properties: any;
+  repairs: any;
 
   constructor() { }
 
-  setData(data: any) {
+  setUser(data: any) {
     localStorage.setItem('user', JSON.stringify(data));
-    this.data = data;
+    this.user = data;
   }
 
-  getData() {
+  getUser() {
     const data = localStorage.getItem('user');
     if (data) {
-        this.data = JSON.parse(data);
-        return this.data;
+        this.user = JSON.parse(data);
+        return this.user;
+    } else {
+        return null;
+    }
+  }
+
+  setProperties(data: any) {
+    localStorage.setItem('properties', JSON.stringify(data));
+    this.user = data;
+  }
+
+  getProperties() {
+    const data = localStorage.getItem('properties');
+    if (data) {
+        this.user = JSON.parse(data);
+        return this.user;
+    } else {
+        return null;
+    }
+  }
+
+  setRepairs(data: any) {
+    localStorage.setItem('repairs', JSON.stringify(data));
+    this.user = data;
+  }
+
+  getRepairs() {
+    const data = localStorage.getItem('repairs');
+    if (data) {
+        this.user = JSON.parse(data);
+        return this.user;
     } else {
         return null;
     }
@@ -26,6 +58,10 @@ export class LoggedUserService {
 
   clearData() {
     localStorage.removeItem('user');
-    this.data = null;
+    localStorage.removeItem('properties');
+    localStorage.removeItem('repairs');
+    this.user = null;
+    this.properties = null;
+    this.repairs = null;
   }
 }

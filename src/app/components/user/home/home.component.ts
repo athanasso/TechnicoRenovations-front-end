@@ -13,7 +13,7 @@ export class UserHomeComponent implements OnInit{
   user : any;
 
   constructor(private service: UserServiceService, private loggedUser: LoggedUserService){
-    this.user = loggedUser.data;
+    this.user = loggedUser.user;
   }
 
   ngOnInit(): void {

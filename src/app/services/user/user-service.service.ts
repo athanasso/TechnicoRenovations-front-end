@@ -27,7 +27,7 @@ export class UserServiceService {
   private readonly deleteOwnerEndPoint = 'http://localhost:8080/shop/api/user/owner/delete_owner';
 
   constructor(private http: HttpClient, private loggedUser: LoggedUserService) {
-    this.vatNumber = loggedUser.data.vatNumber;
+    this.vatNumber = loggedUser.user.vatNumber;
   }
 
   getProperties(){
