@@ -143,7 +143,6 @@ export class UserService{
 
     return this.http.post(this.createRepairEndPoint, JSON.stringify(data), { headers: headers })
       .pipe(
-        retry(1),
         catchError(error => throwError(() => 'Something is wrong...'))
       );
   }
@@ -152,10 +151,8 @@ export class UserService{
     const headers = new HttpHeaders()
     .set('Content-Type', 'application/json')
     .set('Authorization', 'Basic ' + btoa(this.user.username + ':' + this.user.password));
-
     return this.http.post(this.createPropertyEndPoint, JSON.stringify(data), { headers: headers })
       .pipe(
-        retry(1),
         catchError(error => throwError(() => 'Something is wrong...'))
       );
   }

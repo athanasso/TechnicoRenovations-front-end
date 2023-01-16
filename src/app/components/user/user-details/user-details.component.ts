@@ -11,7 +11,7 @@ export class UserDetailsComponent {
   user : any;
 
   constructor(private userService: UserService, private loggedUser: LoggedUserService){
-    this.user = loggedUser.user;
+    this.user = loggedUser.getUser();
   }
 
   deleteUser(response:any) {

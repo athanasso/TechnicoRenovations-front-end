@@ -32,7 +32,7 @@ export class UserRepairsComponent implements OnInit{
   ];
 
   repairRegisterForm: FormGroup = this.fb.group({
-    OwnerVatNumber: this.fb.control(""),
+    ownerVatNumber: this.fb.control(""),
     propertyId: this.fb.control(""),
     description: this.fb.control(""),
     shortDescription: this.fb.control(""),
@@ -41,7 +41,7 @@ export class UserRepairsComponent implements OnInit{
 
   onSubmit() {
     this.register = {
-      "OwnerVatNumber": this.repairRegisterForm.get("OwnerVatNumber")?.value,
+      "ownerVatNumber": this.repairRegisterForm.get("ownerVatNumber")?.value,
       "propertyId": this.repairRegisterForm.get("propertyId")?.value,
       "description": this.repairRegisterForm.get("description")?.value,
       "shortDescription": this.repairRegisterForm.get("shortDescription")?.value,
