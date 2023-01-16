@@ -49,6 +49,6 @@
       <input type="text" class="form-control" id="proposedEndDate" [(ngModel)]="item.proposedEndDate" name="proposedEndDate" placeholder="proposedEndDate" />
     </div>
     <button class="btn btn-primary" (click)="updateItem(item)">Save</button>
-    <button class="btn btn-danger" (click)="deleteRepair(filteredResponse)">Delete</button>
+    <button class="btn btn-danger" (click)="deleteRepair(item)">Delete</button>
   </form>
 </div>

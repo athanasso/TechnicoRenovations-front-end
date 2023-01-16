@@ -1,3 +1,4 @@
+import { EditPropertyComponent } from './components/user/property-details/edit-property/edit-property.component';
 import { AdminGuard } from './guards/admin.guard';
 import { UserGuard } from './guards/user.guard';
 import { EditRepairComponent } from './components/user/repairs/edit-repair/edit-repair.component';
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'user/home', component: UserHomeComponent, canActivate: [UserGuard]},
   { path: 'user/user-details', component: UserDetailsComponent, canActivate: [UserGuard]},
   { path: 'user/property-details', component: PropertyDetailsComponent, canActivate: [UserGuard] },
+  { path: 'user/property-details/edit', component: EditPropertyComponent, canActivate: [UserGuard] },
   { path: 'user/repairs', component: UserRepairsComponent, canActivate: [UserGuard] },
   { path: 'user/repairs/edit', component: EditRepairComponent, canActivate: [UserGuard] },
   { path: 'admin/home', component: AdminHomeComponent, canActivate: [AdminGuard] },

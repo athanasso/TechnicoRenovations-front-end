@@ -26,6 +26,7 @@ import { UserDetailsComponent } from './components/user/user-details/user-detail
 import { PropertyDetailsComponent } from './components/user/property-details/property-details.component';
 import { UserRepairsComponent } from './components/user/repairs/repairs.component';
 import { EditRepairComponent } from './components/user/repairs/edit-repair/edit-repair.component';
+import { EditPropertyComponent } from './components/user/property-details/edit-property/edit-property.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { EditRepairComponent } from './components/user/repairs/edit-repair/edit-
     UserDetailsComponent,
     PropertyDetailsComponent,
     UserRepairsComponent,
-    EditRepairComponent
+    EditRepairComponent,
+    EditPropertyComponent
   ],
   imports: [
     BrowserModule,

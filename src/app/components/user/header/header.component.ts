@@ -8,6 +8,8 @@ import { Component } from '@angular/core';
 })
 export class UserHeaderComponent {
   showMenu = false;
+  showDropdown1 = false;
+  showDropdown2 = false;
 
   toggleMenu() {
     this.showMenu = !this.showMenu;
