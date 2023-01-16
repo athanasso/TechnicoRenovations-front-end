@@ -11,7 +11,6 @@ export class UserService{
 
   private readonly createPropertyEndPoint = 'http://localhost:8080/shop/api/user/property/create_property';
   private readonly correctPropertyAddressEndPoint = 'http://localhost:8080/shop/api/user/property/correct_property_address';
-  private readonly correctPropertyTypeEndPoint = 'http://localhost:8080/shop/api/user/property/correct_property_type';
   private readonly correctPropertyYearEndPoint = 'http://localhost:8080/shop/api/user/property/correct_property_year';
   private readonly createRepairEndPoint = 'http://localhost:8080/shop/api/user/repair/create_property_repair';
   private readonly propertiesEndPoint = 'http://localhost:8080/shop/api/user/get_properties/';
@@ -94,6 +93,30 @@ export class UserService{
     .set('Authorization', 'Basic ' + btoa(this.user.username + ':' + this.user.password));
 
     return this.http.post(this.changeRepairStatusEndPoint, JSON.stringify(data), { headers: headers })
+      .pipe(
+        retry(1),
+        catchError(error => throwError(() => 'Something is wrong...'))
+      );
+  }
+
+  updatePropertyAddress(data:any){
+    const headers = new HttpHeaders()
+    .set('Content-Type', 'application/json')
+    .set('Authorization', 'Basic ' + btoa(this.user.username + ':' + this.user.password));
+
+    return this.http.post(this.correctPropertyAddressEndPoint, JSON.stringify(data), { headers: headers })
+      .pipe(
+        retry(1),
+        catchError(error => throwError(() => 'Something is wrong...'))
+      );
+  }
+
+  updatePropertyYear(data:any){
+    const headers = new HttpHeaders()
+    .set('Content-Type', 'application/json')
+    .set('Authorization', 'Basic ' + btoa(this.user.username + ':' + this.user.password));
+
+    return this.http.post(this.correctPropertyYearEndPoint, JSON.stringify(data), { headers: headers })
       .pipe(
         retry(1),
         catchError(error => throwError(() => 'Something is wrong...'))

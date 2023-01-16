@@ -49,6 +49,21 @@ export class EditPropertyComponent {
   }
 
   updateItem(item: any) {
-
+    this.userService.updatePropertyAddress(item).subscribe(
+      (res: any) => {
+        console.log(res);
+      },
+      (err: any) => {
+        console.log(err);
+      }
+    );
+    this.userService.updatePropertyYear(item).subscribe(
+      (res: any) => {
+        console.log(res);
+      },
+      (err: any) => {
+        console.log(err);
+      }
+    );
   }
 }
