@@ -38,19 +38,21 @@ export class EditOwnerPageComponent implements OnInit {
   }
 
   deleteUser(item:any) {
-    this.userService.deleteOwner(item).subscribe(
-      (res: any) => {
-        console.log(res);
-      },
-      (err: any) => {
-        console.log(err);
-      }
-    );
+    if (confirm("Are you sure you want to delete this user?")) {
+      this.userService.deleteOwner(item).subscribe(
+        (res: any) => {
+          console.log(res);
+        },
+        (err: any) => {
+          console.log(err);
+        }
+      );
+    }
   }
 
   updateItem(item: any) {
     // check if the email has changed
-    if (this.emailControl.value !== item.email) {
+    if (this.emailControl.value && this.emailControl.valid && this.emailControl.touched && this.emailControl.value !== item.email) {
       this.userService.updateEmail({email: this.emailControl.value}).subscribe(
         (res: any) => {
           console.log(res);
@@ -61,7 +63,7 @@ export class EditOwnerPageComponent implements OnInit {
       );
     }
     // check if the password has changed
-    if (this.passwordControl.value !== item.password) {
+    if (this.passwordControl.value && this.passwordControl.valid && this.passwordControl.touched && this.passwordControl.value !== item.password) {
       this.userService.updatePassword({password: this.passwordControl.value}).subscribe(
         (res: any) => {
           console.log(res);
@@ -72,7 +74,7 @@ export class EditOwnerPageComponent implements OnInit {
       );
     }
     // check if the username has changed
-    if (this.usernameControl.value !== item.username) {
+    if (this.usernameControl.value && this.usernameControl.valid && this.usernameControl.touched && this.usernameControl.value !== item.username) {
       this.userService.updateUsername({username: this.usernameControl.value}).subscribe(
         (res: any) => {
           console.log(res);

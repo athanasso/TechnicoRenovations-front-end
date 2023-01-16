@@ -61,13 +61,15 @@ export class PropertyDetailsComponent implements OnInit{
       propertyId: item[0],
       ownerVatNumber: item[1]
     }
-    this.service.deleteProperty(obj).subscribe(
-      (res: any) => {
-        console.log(res);
-      },
-      (err: any) => {
-        console.log(err);
-      }
-    );
+    if (confirm("Are you sure you want to delete this property?")) {
+      this.service.deleteProperty(obj).subscribe(
+        (res: any) => {
+          console.log(res);
+        },
+        (err: any) => {
+          console.log(err);
+        }
+      );
+    }
   }
 }

@@ -15,14 +15,16 @@ export class UserDetailsComponent {
   }
 
   deleteUser(response:any) {
-    this.userService.deleteOwner(response).subscribe(
-      (res: any) => {
-        console.log(res);
-      },
-      (err: any) => {
-        console.log(err);
-      }
-    );
+    if (confirm("Are you sure you want to delete this user?")) {
+      this.userService.deleteOwner(response).subscribe(
+        (res: any) => {
+          console.log(res);
+        },
+        (err: any) => {
+          console.log(err);
+        }
+      );
+    }
   }
 
   updateItem(response: any) {

@@ -36,14 +36,16 @@ export class EditRepairComponent {
   }
 
   deleteRepair(item:any) {
-    this.userService.deleteRepair(item).subscribe(
-      (res: any) => {
-        console.log(res);
-      },
-      (err: any) => {
-        console.log(err);
-      }
-    );
+    if (confirm("Are you sure you want to delete this repair?")) {
+      this.userService.deleteRepair(item).subscribe(
+        (res: any) => {
+          console.log(res);
+        },
+        (err: any) => {
+          console.log(err);
+        }
+      );
+    }
   }
 
   updateItem(item: any) {
