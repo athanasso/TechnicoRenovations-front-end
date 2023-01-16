@@ -42,7 +42,7 @@ export class LoginPageComponent implements OnInit {
       next: data => {
         this.loggedUser.setUser(data);
         this.user = this.loggedUser.getUser();
-        this.loadUser();
+        this.loadUserSettings();
       },
       error: er => {
         this.error = "Error: Invalid credentials.";
@@ -55,12 +55,9 @@ export class LoginPageComponent implements OnInit {
         }
       }
     });
-
-    if (this.user) {if (this.user.typeOfUser=="user"){this.router.navigate(['user/home']);}}
-    if (this.user) {if (this.user.typeOfUser=="admin"){this.router.navigate(['admin/home']);}}
   }
 
-  loadUser(){
+  loadUserSettings(){
     if (this.user) {
       if (this.user.typeOfUser=="user"){
         this.userService.getProperties(this.user.vatNumber).subscribe({
@@ -76,7 +73,10 @@ export class LoginPageComponent implements OnInit {
             this.loggedUser.setRepairs(data);
           },
           error: er => this.message = "Error" + er.message,
-          complete: () => this.message = "Completed..."
+          complete: () => {
+            this.message = "Completed...";
+            this.router.navigate(['user/home']);
+          }
         });
       }
 
@@ -94,7 +94,10 @@ export class LoginPageComponent implements OnInit {
             this.loggedUser.setRepairs(data);
           },
           error: er => this.message = "Error" + er.message,
-          complete: () => this.message = "Completed..."
+          complete: () => {
+            this.message = "Completed...";
+            this.router.navigate(['admin/home']);
+          }
         });
 
         this.adminService.getOwners().subscribe({
