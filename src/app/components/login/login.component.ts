@@ -22,8 +22,8 @@ export class LoginPageComponent implements OnInit {
   constructor(private router: Router, private auth: AuthService, private fb: FormBuilder, private loggedUser: LoggedUserService,private userService: UserService,private adminService: AdminService) {}
 
   userLoginForm: FormGroup = this.fb.group({
-    username: this.fb.control(""),
-    password: this.fb.control(""),
+    username: this.fb.control("", Validators.required),
+    password: this.fb.control("", Validators.required)
   });
 
   goToRegister() {
