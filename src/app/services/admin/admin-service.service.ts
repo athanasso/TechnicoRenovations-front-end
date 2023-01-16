@@ -1,3 +1,4 @@
+import { LoggedUserService } from 'src/app/services/logged-user.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { retry, catchError, throwError } from 'rxjs';
@@ -13,15 +14,15 @@ export class AdminService {
   private readonly propertyRepairsEndPoint = 'http://localhost:8080/shop/api/admin/get_property_repairs';
   private readonly propertiesEndPoint = 'http://localhost:8080/shop/api/admin/get_properties';
   private readonly ownersEndPoint = 'http://localhost:8080/shop/api/admin/get_owners';
-  private readonly deletePropertiesEndPoint = 'http://localhost:8080/shop/api/admin/delete_properties';
-  private readonly deleteOwnersEndPoint = 'http://localhost:8080/shop/api/admin/delete_owners';
-  private readonly deleteRepairsEndPoint = 'http://localhost:8080/shop/api/admin/delete_repairs';
 
-  constructor(private http: HttpClient) { }
+  user: any;
+
+  constructor(private http: HttpClient, private service: LoggedUserService) {this.user = this.service.getUser(); }
 
   getPendingRepairs(){
     const headers = new HttpHeaders()
-    .set('Content-Type', 'application/json');
+    .set('Content-Type', 'application/json')
+    .set('Authorization', 'Basic ' + btoa(this.user.username + ':' + this.user.password));
 
     return this.http.get(this.pendingRepairsEndPoint, { headers: headers })
       .pipe(
@@ -32,7 +33,8 @@ export class AdminService {
 
   getPropertyRepairs(){
     const headers = new HttpHeaders()
-    .set('Content-Type', 'application/json');
+    .set('Content-Type', 'application/json')
+    .set('Authorization', 'Basic ' + btoa(this.user.username + ':' + this.user.password));
 
     return this.http.get(this.propertyRepairsEndPoint, { headers: headers })
       .pipe(
@@ -43,7 +45,8 @@ export class AdminService {
 
   getProperties (){
     const headers = new HttpHeaders()
-    .set('Content-Type', 'application/json');
+    .set('Content-Type', 'application/json')
+    .set('Authorization', 'Basic ' + btoa(this.user.username + ':' + this.user.password));
 
     return this.http.get(this.propertiesEndPoint, { headers: headers })
       .pipe(
@@ -54,7 +57,8 @@ export class AdminService {
 
   getOwners(){
     const headers = new HttpHeaders()
-    .set('Content-Type', 'application/json');
+    .set('Content-Type', 'application/json')
+    .set('Authorization', 'Basic ' + btoa(this.user.username + ':' + this.user.password));
 
     return this.http.get(this.ownersEndPoint, { headers: headers })
       .pipe(
@@ -62,5 +66,4 @@ export class AdminService {
         catchError(error => throwError(() => 'Something is wrong...'))
       );
   }
-
 }
