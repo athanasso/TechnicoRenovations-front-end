@@ -1,6 +1,6 @@
 import { LoggedUserService } from 'src/app/services/logged-user.service';
 import { Component, OnInit } from '@angular/core';
-import { UserServiceService } from 'src/app/services/user/user-service.service';
+import { UserService } from 'src/app/services/user/user-service.service';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -17,7 +17,7 @@ export class EditOwnerPageComponent implements OnInit {
   passwordControl = new FormControl('');
   usernameControl = new FormControl('');
 
-  constructor(private service: LoggedUserService,private userService: UserServiceService) { }
+  constructor(private service: LoggedUserService,private userService: UserService) { }
 
   ngOnInit(): void {
     this.users = this.service.getOwners();

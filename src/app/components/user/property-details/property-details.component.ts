@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { LoggedUserService } from 'src/app/services/logged-user.service';
-import { UserServiceService } from 'src/app/services/user/user-service.service';
+import { UserService } from 'src/app/services/user/user-service.service';
 
 @Component({
   selector: 'app-property-details',
@@ -20,7 +20,7 @@ export class PropertyDetailsComponent implements OnInit{
   response : any;
   message : any;
 
-  constructor(private loggedUser: LoggedUserService, private fb: FormBuilder, private service: UserServiceService){}
+  constructor(private loggedUser: LoggedUserService, private fb: FormBuilder, private service: UserService){}
 
   propertyRegisterForm: FormGroup = this.fb.group({
     propertyId: this.fb.control(""),

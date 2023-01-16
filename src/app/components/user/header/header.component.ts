@@ -1,4 +1,4 @@
-import { AuthServiceService } from 'src/app/services/auth/auth-service.service';
+import { AuthService } from 'src/app/services/auth/auth-service.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -13,7 +13,7 @@ export class UserHeaderComponent {
     this.showMenu = !this.showMenu;
   }
 
-  constructor(private authService: AuthServiceService) {}
+  constructor(private authService: AuthService) {}
 
   signOut() {
     this.authService.signOut();

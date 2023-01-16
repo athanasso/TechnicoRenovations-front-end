@@ -5,7 +5,7 @@ import { retry, catchError, throwError } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class AdminServiceService {
+export class AdminService {
 
   private readonly pendingRepairsEndPoint = 'http://localhost:8080/shop/api/admin/get_pending_repairs';
   private readonly proposeCostEndPoint = 'http://localhost:8080/shop/api/admin/propose_cost';

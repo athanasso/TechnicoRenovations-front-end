@@ -7,7 +7,7 @@ import { LoggedUserService } from '../logged-user.service';
 @Injectable({
   providedIn: 'root'
 })
-export class UserServiceService implements OnInit{
+export class UserService implements OnInit{
 
   private readonly createPropertyEndPoint = 'http://localhost:8080/shop/api/user/property/create_property';
   private readonly correctPropertyAddressEndPoint = 'http://localhost:8080/shop/api/user/property/correct_property_address';

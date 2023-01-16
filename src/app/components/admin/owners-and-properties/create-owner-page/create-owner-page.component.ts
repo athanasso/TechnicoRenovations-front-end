@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthServiceService } from 'src/app/services/auth/auth-service.service';
+import { AuthService } from 'src/app/services/auth/auth-service.service';
 
 @Component({
   selector: 'app-create-owner-page',
@@ -13,7 +13,7 @@ export class CreateOwnerPageComponent {
   response: any;
   message = '';
 
-  constructor(private router: Router, private service: AuthServiceService, private fb: FormBuilder) {}
+  constructor(private router: Router, private service: AuthService, private fb: FormBuilder) {}
 
   goToLogin() {
     this.router.navigate(['/login']);

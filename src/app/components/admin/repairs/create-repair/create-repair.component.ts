@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserServiceService } from 'src/app/services/user/user-service.service';
+import { UserService } from 'src/app/services/user/user-service.service';
 
 @Component({
   selector: 'app-create-repair',
@@ -21,7 +21,7 @@ export class CreateRepairComponent {
   response: any;
   message = '';
 
-  constructor(private router: Router, private service: UserServiceService, private fb: FormBuilder) {}
+  constructor(private router: Router, private service: UserService, private fb: FormBuilder) {}
 
   repairRegisterForm: FormGroup = this.fb.group({
     OwnerVatNumber: this.fb.control(""),

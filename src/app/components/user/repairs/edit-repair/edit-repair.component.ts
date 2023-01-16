@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { LoggedUserService } from 'src/app/services/logged-user.service';
-import { UserServiceService } from 'src/app/services/user/user-service.service';
+import { UserService } from 'src/app/services/user/user-service.service';
 
 @Component({
   selector: 'app-edit-repair',
@@ -20,7 +20,7 @@ export class EditRepairComponent {
     {value: '5', label: 'Electrical work'}
   ];
 
-  constructor(private service: LoggedUserService, private userService: UserServiceService) { }
+  constructor(private service: LoggedUserService, private userService: UserService) { }
 
   ngOnInit(): void {
     this.repairs = this.service.getRepairs();

@@ -1,4 +1,4 @@
-import { AuthServiceService } from './../../../services/auth/auth-service.service';
+import { AuthService } from './../../../services/auth/auth-service.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -13,7 +13,7 @@ export class AdminHeaderComponent {
     this.showMenu = !this.showMenu;
   }
 
-  constructor(private authService: AuthServiceService) {}
+  constructor(private authService: AuthService) {}
 
   showDropdown1 = false;
   showDropdown2 = false;

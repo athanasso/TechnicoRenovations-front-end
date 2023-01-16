@@ -1,6 +1,6 @@
 import { LoggedUserService } from './../../../services/logged-user.service';
 import { Component } from '@angular/core';
-import { UserServiceService } from 'src/app/services/user/user-service.service';
+import { UserService } from 'src/app/services/user/user-service.service';
 
 @Component({
   selector: 'app-user-details',
@@ -10,7 +10,7 @@ export class UserDetailsComponent {
 
   user : any;
 
-  constructor(private userService: UserServiceService, private loggedUser: LoggedUserService){
+  constructor(private userService: UserService, private loggedUser: LoggedUserService){
     this.user = loggedUser.user;
   }
 

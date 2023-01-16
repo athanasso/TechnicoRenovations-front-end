@@ -8,7 +8,7 @@ import { catchError, retry } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthServiceService {
+export class AuthService {
 
   private readonly loginEndPoint = 'http://localhost:8080/shop/api/auth/login';
   private readonly RegisterEndPoint = 'http://localhost:8080/shop/api/auth/register';

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoggedUserService } from 'src/app/services/logged-user.service';
-import { UserServiceService } from 'src/app/services/user/user-service.service';
+import { UserService } from 'src/app/services/user/user-service.service';
 
 @Component({
   selector: 'app-repairs',
@@ -17,7 +17,7 @@ export class UserRepairsComponent implements OnInit{
   response: any;
   message = '';
 
-  constructor(private service: LoggedUserService, private router: Router, private UserService: UserServiceService, private fb: FormBuilder) { }
+  constructor(private service: LoggedUserService, private router: Router, private UserService: UserService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.repairs = this.service.getRepairs();
