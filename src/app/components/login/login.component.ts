@@ -15,7 +15,8 @@ export class LoginPageComponent implements OnInit {
   owners: any;
   user: any;
   login : any;
-  message = '';
+  error = '';
+  success = '';
 
   constructor(private router: Router, private auth: AuthService, private fb: FormBuilder, private loggedUser: LoggedUserService,private userService: UserService,private adminService: AdminService) {}
 
@@ -40,58 +41,68 @@ export class LoginPageComponent implements OnInit {
       next: data => {
         this.loggedUser.setUser(data);
       },
-      error: er => this.message = "Error" + er.message,
-      complete: () => this.message = "Completed..."
+      error: er => {
+        this.error = "Error: Invalid credentials.";
+      },
+      complete: () => {
+        if (!this.loggedUser.getUser()) {
+          this.error = "Error: Invalid credentials.";
+        } else {
+          this.success = "Logining in...";
+        }
+      }
     });
 
     this.user = this.loggedUser.getUser();
 
-    if (this.user.typeOfUser=="user"){
-      this.userService.getProperties(this.user.vatNumber).subscribe({
-        next: data => {
-          this.loggedUser.setProperties(data);
-        },
-        error: er => this.message = "Error" + er.message,
-        complete: () => this.message = "Completed..."
-      });
+    if (this.user) {
+      if (this.user.typeOfUser=="user"){
+        this.userService.getProperties(this.user.vatNumber).subscribe({
+          next: data => {
+            this.loggedUser.setProperties(data);
+          },
+          error: er => this.error = "Error" + er.message,
+          complete: () => this.success = "Completed..."
+        });
 
-      this.userService.getRepairs(this.user.vatNumber).subscribe({
-        next: data => {
-          this.loggedUser.setRepairs(data);
-        },
-        error: er => this.message = "Error" + er.message,
-        complete: () => this.message = "Completed..."
-      });
+        this.userService.getRepairs(this.user.vatNumber).subscribe({
+          next: data => {
+            this.loggedUser.setRepairs(data);
+          },
+          error: er => this.error = "Error" + er.message,
+          complete: () => this.success = "Completed..."
+        });
 
-      this.router.navigate(['user/home']);
-    }
+        this.router.navigate(['user/home']);
+      }
 
-    if (this.user.typeOfUser=="admin"){
-      this.adminService.getProperties().subscribe({
-        next: data => {
-          this.loggedUser.setProperties(data);
-        },
-        error: er => this.message = "Error" + er.message,
-        complete: () => this.message = "Completed..."
-      });
+      if (this.user.typeOfUser=="admin"){
+        this.adminService.getProperties().subscribe({
+          next: data => {
+            this.loggedUser.setProperties(data);
+          },
+          error: er => this.error = "Error" + er.message,
+          complete: () => this.success = "Completed..."
+        });
 
-      this.adminService.getPropertyRepairs().subscribe({
-        next: data => {
-          this.loggedUser.setRepairs(data);
-        },
-        error: er => this.message = "Error" + er.message,
-        complete: () => this.message = "Completed..."
-      });
+        this.adminService.getPropertyRepairs().subscribe({
+          next: data => {
+            this.loggedUser.setRepairs(data);
+          },
+          error: er => this.error = "Error" + er.message,
+          complete: () => this.success = "Completed..."
+        });
 
-      this.adminService.getOwners().subscribe({
-        next: data => {
-          this.loggedUser.setOwners(data);
-        },
-        error: er => this.message = "Error" + er.message,
-        complete: () => this.message = "Completed..."
-      });
+        this.adminService.getOwners().subscribe({
+          next: data => {
+            this.loggedUser.setOwners(data);
+          },
+          error: er => this.error = "Error" + er.message,
+          complete: () => this.success = "Completed..."
+        });
 
-      this.router.navigate(['admin/home']);
+        this.router.navigate(['admin/home']);
+      }
     }
   }
 }

@@ -3,6 +3,8 @@
     <div class="col-md-10">
       <h1>Login</h1>
       <form method="post" [formGroup]="userLoginForm" (ngSubmit)="onSubmit()">
+        <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+        <div *ngIf="success" class="alert alert-success">{{ success }}</div>
         <div class="form-group">
           <label for="username">Username</label>
           <input formControlName="username" type="text" class="form-control" id="username" aria-describedby="usernameHelp"
