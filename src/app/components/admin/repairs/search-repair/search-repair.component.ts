@@ -18,9 +18,11 @@ export class SearchRepairComponent {
   }
 
   search() {
-    this.filteredResponse = this.repairs.data.filter((repair: { repairId: any; propertyOwner: { vatNumber: number; }; }) => {
-      return repair.repairId
-      || repair.propertyOwner.vatNumber == parseInt(this.searchQuery);
-    });
+    if(this.searchQuery){
+      this.filteredResponse = this.repairs.data.filter((repair: { status: string; repairId: number; }) => {
+        return repair.status.toLowerCase().includes(this.searchQuery.toLowerCase())
+        || repair.repairId == parseInt(this.searchQuery);
+      });
+    }
   }
 }

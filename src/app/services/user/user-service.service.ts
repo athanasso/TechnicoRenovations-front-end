@@ -83,6 +83,17 @@ export class UserService implements OnInit{
       );
   }
 
+  updateRepairStatus(data:any){
+    const headers = new HttpHeaders()
+    .set('Content-Type', 'application/json');
+
+    return this.http.post(this.changeRepairStatusEndPoint, JSON.stringify(data), { headers: headers })
+      .pipe(
+        retry(1),
+        catchError(error => throwError(() => 'Something is wrong...'))
+      );
+  }
+
   deleteOwner(data:any){
     const headers = new HttpHeaders()
     .set('Content-Type', 'application/json');

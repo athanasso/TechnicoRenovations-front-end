@@ -27,10 +27,14 @@ export class EditRepairComponent {
   }
 
   search() {
-    this.filteredResponse = this.repairs.data.filter((repair: { repairId: any; }) => {
-      return repair.repairId
-    });
+    if(this.searchQuery){
+      this.filteredResponse = this.repairs.data.filter((repair: { status: string; repairId: number; }) => {
+        return repair.status.toLowerCase().includes(this.searchQuery.toLowerCase())
+        || repair.repairId == parseInt(this.searchQuery);
+      });
+    }
   }
+
   deleteRepair(item:any) {
     this.userService.deleteRepair(item).subscribe(
       (res: any) => {
@@ -43,38 +47,6 @@ export class EditRepairComponent {
   }
 
   updateItem(item: any) {
-  //   // check if the email has changed
-  //   if (this.emailControl.value !== item.email) {
-  //     this.userService.updateEmail({email: this.emailControl.value}).subscribe(
-  //       (res: any) => {
-  //         console.log(res);
-  //       },
-  //       (err: any) => {
-  //         console.log(err);
-  //       }
-  //     );
-  //   }
-  //   // check if the password has changed
-  //   if (this.passwordControl.value !== item.password) {
-  //     this.userService.updatePassword({password: this.passwordControl.value}).subscribe(
-  //       (res: any) => {
-  //         console.log(res);
-  //       },
-  //       (err: any) => {
-  //         console.log(err);
-  //       }
-  //     );
-  //   }
-  //   // check if the username has changed
-  //   if (this.usernameControl.value !== item.username) {
-  //     this.userService.updateUsername({username: this.usernameControl.value}).subscribe(
-  //       (res: any) => {
-  //         console.log(res);
-  //       },
-  //       (err: any) => {
-  //         console.log(err);
-  //       }
-  //     );
-  //   }
+
   }
 }
