@@ -1,3 +1,5 @@
+import { AdminGuard } from './guards/admin.guard';
+import { UserGuard } from './guards/user.guard';
 import { EditRepairComponent } from './components/user/repairs/edit-repair/edit-repair.component';
 import { PropertyDetailsComponent } from './components/user/property-details/property-details.component';
 import { UserDetailsComponent } from './components/user/user-details/user-details.component';
@@ -23,19 +25,19 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'register', component: RegisterComponent },
   { path: 'aboutus', component: AboutusComponent },
-  { path: 'user/home', component: UserHomeComponent },
-  { path: 'user/user-details', component: UserDetailsComponent },
-  { path: 'user/property-details', component: PropertyDetailsComponent },
-  { path: 'user/repairs', component: UserRepairsComponent },
-  { path: 'user/repairs/edit', component: EditRepairComponent },
-  { path: 'admin/home', component: AdminHomeComponent },
-  { path: 'admin/owners_properties', component: OwnersAndPropertiesComponent },
-  { path: 'admin/owners_properties/create-owner', component: CreateOwnerPageComponent },
-  { path: 'admin/owners_properties/edit-owner', component: EditOwnerPageComponent },
-  { path: 'admin/owners_properties/search-owner', component: SearchOwnerPageComponent },
-  { path: 'admin/repairs', component: AdminRepairsComponent },
-  { path: 'admin/repairs/create-repair', component: CreateRepairComponent },
-  { path: 'admin/repairs/search-repair', component: SearchRepairComponent },
+  { path: 'user/home', component: UserHomeComponent, canActivate: [UserGuard]},
+  { path: 'user/user-details', component: UserDetailsComponent, canActivate: [UserGuard]},
+  { path: 'user/property-details', component: PropertyDetailsComponent, canActivate: [UserGuard] },
+  { path: 'user/repairs', component: UserRepairsComponent, canActivate: [UserGuard] },
+  { path: 'user/repairs/edit', component: EditRepairComponent, canActivate: [UserGuard] },
+  { path: 'admin/home', component: AdminHomeComponent, canActivate: [AdminGuard] },
+  { path: 'admin/owners_properties', component: OwnersAndPropertiesComponent, canActivate: [AdminGuard] },
+  { path: 'admin/owners_properties/create-owner', component: CreateOwnerPageComponent, canActivate: [AdminGuard] },
+  { path: 'admin/owners_properties/edit-owner', component: EditOwnerPageComponent, canActivate: [AdminGuard] },
+  { path: 'admin/owners_properties/search-owner', component: SearchOwnerPageComponent, canActivate: [AdminGuard] },
+  { path: 'admin/repairs', component: AdminRepairsComponent, canActivate: [AdminGuard] },
+  { path: 'admin/repairs/create-repair', component: CreateRepairComponent, canActivate: [AdminGuard] },
+  { path: 'admin/repairs/search-repair', component: SearchRepairComponent, canActivate: [AdminGuard] },
   { path: 'not-found', component: NotfoundComponent },
   { path: '**', redirectTo: '/not-found' }
 ];
