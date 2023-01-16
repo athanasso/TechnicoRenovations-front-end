@@ -17,6 +17,7 @@ export class LoginPageComponent implements OnInit {
   login : any;
   error = '';
   success = '';
+  message = '';
 
   constructor(private router: Router, private auth: AuthService, private fb: FormBuilder, private loggedUser: LoggedUserService,private userService: UserService,private adminService: AdminService) {}
 
@@ -40,6 +41,8 @@ export class LoginPageComponent implements OnInit {
     this.auth.getUser(this.login).subscribe({
       next: data => {
         this.loggedUser.setUser(data);
+        this.user = this.loggedUser.getUser();
+        this.loadUser();
       },
       error: er => {
         this.error = "Error: Invalid credentials.";
@@ -53,27 +56,28 @@ export class LoginPageComponent implements OnInit {
       }
     });
 
-    this.user = this.loggedUser.getUser();
+    if (this.user) {if (this.user.typeOfUser=="user"){this.router.navigate(['user/home']);}}
+    if (this.user) {if (this.user.typeOfUser=="admin"){this.router.navigate(['admin/home']);}}
+  }
 
+  loadUser(){
     if (this.user) {
       if (this.user.typeOfUser=="user"){
         this.userService.getProperties(this.user.vatNumber).subscribe({
           next: data => {
             this.loggedUser.setProperties(data);
           },
-          error: er => this.error = "Error" + er.message,
-          complete: () => this.success = "Completed..."
+          error: er => this.message = "Error" + er.message,
+          complete: () => this.message = "Completed..."
         });
 
         this.userService.getRepairs(this.user.vatNumber).subscribe({
           next: data => {
             this.loggedUser.setRepairs(data);
           },
-          error: er => this.error = "Error" + er.message,
-          complete: () => this.success = "Completed..."
+          error: er => this.message = "Error" + er.message,
+          complete: () => this.message = "Completed..."
         });
-
-        this.router.navigate(['user/home']);
       }
 
       if (this.user.typeOfUser=="admin"){
@@ -81,27 +85,25 @@ export class LoginPageComponent implements OnInit {
           next: data => {
             this.loggedUser.setProperties(data);
           },
-          error: er => this.error = "Error" + er.message,
-          complete: () => this.success = "Completed..."
+          error: er => this.message = "Error" + er.message,
+          complete: () => this.message = "Completed..."
         });
 
         this.adminService.getPropertyRepairs().subscribe({
           next: data => {
             this.loggedUser.setRepairs(data);
           },
-          error: er => this.error = "Error" + er.message,
-          complete: () => this.success = "Completed..."
+          error: er => this.message = "Error" + er.message,
+          complete: () => this.message = "Completed..."
         });
 
         this.adminService.getOwners().subscribe({
           next: data => {
             this.loggedUser.setOwners(data);
           },
-          error: er => this.error = "Error" + er.message,
-          complete: () => this.success = "Completed..."
+          error: er => this.message = "Error" + er.message,
+          complete: () => this.message = "Completed..."
         });
-
-        this.router.navigate(['admin/home']);
       }
     }
   }
