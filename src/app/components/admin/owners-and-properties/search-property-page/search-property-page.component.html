@@ -1,0 +1,37 @@
+<admin-header></admin-header>
+<div class="container">
+  <div class="container">
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="searchQuery" placeholder="Search...">
+      <button class="btn btn-primary" (click)="search()">Search</button>
+    </div>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Property Id</th>
+        <th>Property Address</th>
+        <th>Owner Name</th>
+        <th>Owner Surname</th>
+        <th>Owner Vat Number</th>
+        <th>Owner Phone Number</th>
+        <th>Owner Email</th>
+        <th>Property Type</th>
+        <th>Property Construction Year</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let property of filteredResponse">
+        <td>{{ property.propertyId }}</td>
+        <td>{{ property.propertyAddress }}</td>
+        <td>{{ property.propertyOwner.name }}</td>
+        <td>{{ property.propertyOwner.surname }}</td>
+        <td>{{ property.propertyOwner.vatNumber }}</td>
+        <td>{{ property.propertyOwner.phoneNumber }}</td>
+        <td>{{ property.propertyOwner.email }}</td>
+        <td>{{ property.propertyType }}</td>
+        <td>{{ property.yearOfConstruction }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
