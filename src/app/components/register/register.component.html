@@ -7,34 +7,74 @@
           <label for="username">Username</label>
           <input formControlName="username" type="text" class="form-control" id="username" aria-describedby="usernameHelp"
             placeholder="Enter username" />
+            <div *ngIf="userRegisterForm.get('username')?.invalid && userRegisterForm.get('username')?.touched" class="text-danger">
+              <div *ngIf="userRegisterForm.get('username')?.errors">
+                Username is required
+              </div>
+            </div>
         </div>
         <div class="form-group">
           <label for="email">Email</label>
           <input formControlName="email" type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" />
+          <div *ngIf="userRegisterForm.get('email')?.invalid && userRegisterForm.get('email')?.touched" class="text-danger">
+            <div *ngIf="userRegisterForm.get('email')?.errors">
+              Email is required
+            </div>
+          </div>
         </div>
         <div class="form-group">
           <label for="password">Password</label>
           <input formControlName="password" type="password" class="form-control" id="password" placeholder="Password" />
+          <div *ngIf="userRegisterForm.get('password')?.invalid && userRegisterForm.get('password')?.touched" class="text-danger">
+            <div *ngIf="userRegisterForm.get('password')?.errors">
+              Password is required
+            </div>
+          </div>
         </div>
         <div class="form-group">
           <label for="vatNumber">Vat Number</label>
           <input formControlName="vatNumber" type="text" class="form-control" id="vatNumber" placeholder="Vat Number" />
+          <div *ngIf="userRegisterForm.get('vatNumber')?.invalid && userRegisterForm.get('vatNumber')?.touched" class="text-danger">
+            <div *ngIf="userRegisterForm.get('vatNumber')?.errors">
+              Vat Number is required
+            </div>
+          </div>
         </div>
         <div class="form-group">
           <label for="name">Name</label>
           <input formControlName="name" type="text" class="form-control" id="name" placeholder="Name" />
+          <div *ngIf="userRegisterForm.get('name')?.invalid && userRegisterForm.get('name')?.touched" class="text-danger">
+            <div *ngIf="userRegisterForm.get('name')?.errors">
+              Name is required
+            </div>
+          </div>
         </div>
         <div class="form-group">
           <label for="surname">Surname</label>
           <input formControlName="surname" type="text" class="form-control" id="surname" placeholder="Surname" />
+          <div *ngIf="userRegisterForm.get('surname')?.invalid && userRegisterForm.get('surname')?.touched" class="text-danger">
+            <div *ngIf="userRegisterForm.get('surname')?.errors">
+              Surname is required
+            </div>
+          </div>
         </div>
         <div class="form-group">
           <label for="address">Address</label>
           <input formControlName="address" type="text" class="form-control" id="address" placeholder="Address" />
+          <div *ngIf="userRegisterForm.get('address')?.invalid && userRegisterForm.get('address')?.touched" class="text-danger">
+            <div *ngIf="userRegisterForm.get('address')?.errors">
+              Address is required
+            </div>
+          </div>
         </div>
         <div class="form-group">
           <label for="phoneNumber">Phone Number</label>
           <input formControlName="phoneNumber" type="text" class="form-control" id="phoneNumber" placeholder="Phone Number" />
+          <div *ngIf="userRegisterForm.get('phoneNumber')?.invalid && userRegisterForm.get('phoneNumber')?.touched" class="text-danger">
+            <div *ngIf="userRegisterForm.get('phoneNumber')?.errors">
+              Phone Number is required
+            </div>
+          </div>
         </div>
         <div class="form-group mt-1">
           <button type="submit" class="btn btn-primary">Submit</button>

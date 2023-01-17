@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user/user-service.service';
 
@@ -24,32 +24,34 @@ export class CreateRepairComponent {
   constructor(private router: Router, private service: UserService, private fb: FormBuilder) {}
 
   repairRegisterForm: FormGroup = this.fb.group({
-    ownerVatNumber: this.fb.control(""),
-    propertyId: this.fb.control(""),
-    description: this.fb.control(""),
-    shortDescription: this.fb.control(""),
-    repairType: this.fb.control("")
+    ownerVatNumber: this.fb.control("", [Validators.required]),
+    propertyId: this.fb.control("", [Validators.required]),
+    description: this.fb.control("", [Validators.required]),
+    shortDescription: this.fb.control("", [Validators.required]),
+    repairType: this.fb.control("", [Validators.required])
   });
 
   ngOnInit(): void {}
 
   onSubmit() {
-    this.register = {
-      "ownerVatNumber": this.repairRegisterForm.get("ownerVatNumber")?.value,
-      "propertyId": this.repairRegisterForm.get("propertyId")?.value,
-      "description": this.repairRegisterForm.get("description")?.value,
-      "shortDescription": this.repairRegisterForm.get("shortDescription")?.value,
-      "repairType": this.repairRegisterForm.get("repairType")?.value
-    };
+    if(this.repairRegisterForm.valid) {
+      this.register = {
+        "ownerVatNumber": this.repairRegisterForm.get("ownerVatNumber")?.value,
+        "propertyId": this.repairRegisterForm.get("propertyId")?.value,
+        "description": this.repairRegisterForm.get("description")?.value,
+        "shortDescription": this.repairRegisterForm.get("shortDescription")?.value,
+        "repairType": this.repairRegisterForm.get("repairType")?.value
+      };
 
-    this.router.navigate(['admin/home']);
+      this.router.navigate(['admin/home']);
 
-    this.service.createRepair(this.register).subscribe({
-      next: data => {
-        this.response = data;
-      },
-      error: er => this.message = "Error" + er.message,
-      complete: () => this.message = "Completed..."
-    });
+      this.service.createRepair(this.register).subscribe({
+        next: data => {
+          this.response = data;
+        },
+        error: er => this.message = "Error" + er.message,
+        complete: () => this.message = "Completed..."
+      });
+    }
   }
 }
