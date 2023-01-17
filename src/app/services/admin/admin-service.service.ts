@@ -19,6 +19,32 @@ export class AdminService {
 
   constructor(private http: HttpClient, private service: LoggedUserService) {this.user = this.service.getUser(); }
 
+  proposeCost(data: any){
+    const headers = new HttpHeaders()
+    .set('Content-Type', 'application/json')
+    .set('Authorization', 'Basic ' + btoa(this.user.username + ':' + this.user.password));
+
+    return this.http.post(this.proposeCostEndPoint, JSON.stringify(data), { headers: headers })
+      .pipe(
+        retry(1),
+        catchError(error => throwError(() => 'Something is wrong...'))
+      );
+  }
+
+  proposeDates(data: any){
+    const headers = new HttpHeaders()
+    .set('Content-Type', 'application/json')
+    .set('Authorization', 'Basic ' + btoa(this.user.username + ':' + this.user.password));
+
+    console.log(JSON.stringify(data));
+
+    return this.http.post(this.proposeDatesEndPoint, JSON.stringify(data), { headers: headers })
+      .pipe(
+        retry(1),
+        catchError(error => throwError(() => 'Something is wrong...'))
+      );
+  }
+
   getPendingRepairs(){
     const headers = new HttpHeaders()
     .set('Content-Type', 'application/json')

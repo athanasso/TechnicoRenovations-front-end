@@ -1,3 +1,4 @@
+import { EditRepairPageComponent } from './components/admin/repairs/edit-repair/edit-repair.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -57,7 +58,8 @@ import { EditPropertyPageComponent } from './components/admin/owners-and-propert
     EditPropertyComponent,
     CreatePropertyPageComponent,
     SearchPropertyPageComponent,
-    EditPropertyPageComponent
+    EditPropertyPageComponent,
+    EditRepairPageComponent
   ],
   imports: [
     BrowserModule,

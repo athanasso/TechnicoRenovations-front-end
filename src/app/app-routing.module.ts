@@ -23,6 +23,7 @@ import { EditOwnerPageComponent } from './components/admin/owners-and-properties
 import { OwnersAndPropertiesComponent } from './components/admin/owners-and-properties/owners-and-properties.component';
 import { SearchOwnerPageComponent } from './components/admin/owners-and-properties/search-owner-page/search-owner-page.component';
 import { UserRepairsComponent } from './components/user/repairs/repairs.component';
+import { EditRepairPageComponent } from './components/admin/repairs/edit-repair/edit-repair.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
@@ -46,6 +47,7 @@ const routes: Routes = [
   { path: 'admin/repairs', component: AdminRepairsComponent, canActivate: [AdminGuard] },
   { path: 'admin/repairs/create-repair', component: CreateRepairComponent, canActivate: [AdminGuard] },
   { path: 'admin/repairs/search-repair', component: SearchRepairComponent, canActivate: [AdminGuard] },
+  { path: 'admin/repairs/edit-repair', component: EditRepairPageComponent, canActivate: [AdminGuard] },
   { path: 'not-found', component: NotfoundComponent },
   { path: '**', redirectTo: '/not-found' }
 ];
