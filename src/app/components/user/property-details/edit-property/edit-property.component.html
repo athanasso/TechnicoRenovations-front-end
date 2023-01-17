@@ -13,7 +13,7 @@
         <input type="text" class="form-control" id="propertyId" [(ngModel)]="item.propertyId" name="propertyId" placeholder="propertyId" />
     </div>
     <div class="form-group">
-        <label for="propertyAddress">Address</label>
+        <label for="propertyAddress">Address <small class="text-muted">(editable)</small></label>
         <input type="text" class="form-control" id="propertyAddress" [(ngModel)]="item.propertyAddress" name="propertyAddress" placeholder="propertyAddress" />
     </div>
     <div class="form-group">
@@ -21,7 +21,7 @@
         <input type="text" class="form-control" id="propertyType" [(ngModel)]="item.propertyType" name="propertyType" placeholder="propertyType" />
     </div>
     <div class="form-group">
-        <label for="yearOfConstruction">Construction Year</label>
+        <label for="yearOfConstruction">Construction Year <small class="text-muted">(editable)</small></label>
         <input type="text" class="form-control" id="yearOfConstruction" [(ngModel)]="item.yearOfConstruction" name="yearOfConstruction" placeholder="yearOfConstruction" />
     </div>
     <button class="btn btn-primary" (click)="updateItem(item)">Save</button>

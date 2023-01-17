@@ -12,14 +12,6 @@ export class EditRepairComponent {
   filteredResponse: any;
   repairs: any;
 
-  repairTypeOptions = [
-    {value: '1', label: 'Painting'},
-    {value: '2', label: 'Insulation'},
-    {value: '3', label: 'Frames'},
-    {value: '4', label: 'Plumbing'},
-    {value: '5', label: 'Electrical work'}
-  ];
-
   constructor(private service: LoggedUserService, private userService: UserService) { }
 
   ngOnInit(): void {
