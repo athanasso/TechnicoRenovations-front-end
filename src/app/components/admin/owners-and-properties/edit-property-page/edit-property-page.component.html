@@ -1,0 +1,52 @@
+<admin-header></admin-header>
+<div class="container">
+  <div class="container">
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="searchQuery" placeholder="Search...">
+      <button class="btn btn-primary" (click)="search()">Search</button>
+    </div>
+  </div>
+<div class="container" *ngIf="filteredResponse">
+  <div *ngFor="let item of filteredResponse">
+    <form>
+      <div class="form-group">
+          <label for="propertyId">Property Id</label>
+          <input type="text" class="form-control" id="propertyId" [(ngModel)]="item.propertyId" name="propertyId" placeholder="propertyId" />
+      </div>
+      <div class="form-group">
+          <label for="propertyAddress">Property Address<small class="text-muted">(editable)</small></label>
+          <input type="text" class="form-control" id="propertyAddress" [(ngModel)]="item.propertyAddress" name="propertyAddress" placeholder="propertyAddress" />
+      </div>
+      <div class="form-group">
+          <label for="propertyOwner.name">Owner Name</label>
+          <input type="text" class="form-control" id="propertyOwner.name" [(ngModel)]="item.propertyOwner.name" name="propertyOwner.name" placeholder="propertyOwner name" />
+      </div>
+      <div class="form-group">
+          <label for="propertyOwner.surname">Owner Surname</label>
+          <input type="text" class="form-control" id="propertyOwner.surname" [(ngModel)]="item.propertyOwner.surname" name="propertyOwner.surname" placeholder="propertyOwner surname" />
+      </div>
+      <div class="form-group">
+          <label for="propertyOwner.vatNumber">Owner Vat</label>
+          <input type="text" class="form-control" id="propertyOwner.vatNumber" [(ngModel)]="item.propertyOwner.vatNumber" name="propertyOwner.vatNumber" placeholder="propertyOwner vatNumber" />
+      </div>
+      <div class="form-group">
+          <label for="propertyOwner.phoneNumber">Owner Phone Number</label>
+          <input type="text" class="form-control" id="propertyOwner.phoneNumber" [(ngModel)]="item.propertyOwner.phoneNumber" name="propertyOwner.phoneNumber" placeholder="propertyOwner phoneNumber" />
+      </div>
+      <div class="form-group">
+          <label for="propertyOwner.email">Owner Email <small class="text-muted">(editable)</small></label>
+          <input type="email" class="form-control" id="propertyOwner.email" [(ngModel)]="item.propertyOwner.email" name="propertyOwner.email" placeholder="propertyOwner email" />
+      </div>
+      <div class="form-group">
+        <label for="propertyType">Type</label>
+        <input type="text" class="form-control" id="propertyType" [(ngModel)]="item.propertyType" name="propertyType" placeholder="propertyType" />
+      </div>
+      <div class="form-group">
+        <label for="yearOfConstruction">Construction Year <small class="text-muted">(editable)</small></label>
+        <input type="text" class="form-control" id="yearOfConstruction" [(ngModel)]="item.yearOfConstruction" name="yearOfConstruction" placeholder="yearOfConstruction" />
+      </div>
+      <button class="btn btn-primary" (click)="updateItem(item)">Save</button>
+      <button class="btn btn-danger" (click)="deleteUser(item)">Delete</button>
+    </form>
+  </div>
+</div>
