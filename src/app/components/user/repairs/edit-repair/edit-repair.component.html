@@ -9,8 +9,8 @@
 <div class="container" *ngIf="filteredResponse">
   <form *ngFor="let item of filteredResponse">
     <div class="form-group">
-        <label for="accepted">Accepted</label>
-        <input type="text" class="form-control" id="accepted" [(ngModel)]="item.accepted" name="accepted" placeholder="accepted" />
+      <label for="accepted">Accepted</label>
+      <input type="checkbox" id="accepted" [checked]="item.accepted" (change)="item.accepted = !item.accepted" >
     </div>
     <div class="form-group">
         <label for="status">Status</label>
@@ -22,12 +22,16 @@
     </div>
     <div class="form-group">
         <label for="desciption">Description</label>
-        <input type="text" class="form-control" id="desciption" [(ngModel)]="item.desciption" name="desciption" placeholder="description" />
+        <input type="text" class="form-control" id="desciption" [(ngModel)]="item.description" name="desciption" placeholder="description" />
     </div>
     <div class="form-group">
       <label for="repairType">Type</label>
-      <input type="text" class="form-control" id="repairType" [(ngModel)]="item.repairType" name="repairType" placeholder="repairType" />
-  </div>
+      <input type="text" class="form-control" [(ngModel)]="item.repairType" name="repairType" placeholder="repairType" />
+    </div>
+    <div class="form-check" *ngFor="let option of repairTypeOptions">
+      <input class="form-check-input" type="radio" [(ngModel)]="item.repairType" name="repairType" [value]="option.value" [checked]="item.repairType === option.value">
+      <label class="form-check-label">{{ option.label }}</label>
+    </div>
     <div class="form-group">
         <label for="proposedCost">Cost</label>
         <input type="text" class="form-control" id="proposedCost" [(ngModel)]="item.proposedCost" name="proposedCost" placeholder="cost" />

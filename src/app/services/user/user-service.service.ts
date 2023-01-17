@@ -15,6 +15,7 @@ export class UserService{
   private readonly createRepairEndPoint = 'http://localhost:8080/shop/api/user/repair/create_property_repair';
   private readonly propertiesEndPoint = 'http://localhost:8080/shop/api/user/get_properties/';
   private readonly changeRepairStatusEndPoint = 'http://localhost:8080/shop/api/user/repair/repair_status';
+  private readonly changeDescriptionEndpoint = 'http://localhost:8080/shop/api/user/repair/description';
   private readonly repairStatusEndPoint = 'http://localhost:8080/shop/api/user/get_repair_status/';
   private readonly correctOwnerUsernameEndPoint = 'http://localhost:8080/shop/api/user/owner/correct_owner_username';
   private readonly correctOwnerEmailEndPoint = 'http://localhost:8080/shop/api/user/owner/correct_owner_email';
@@ -93,6 +94,18 @@ export class UserService{
     .set('Authorization', 'Basic ' + btoa(this.user.username + ':' + this.user.password));
 
     return this.http.post(this.changeRepairStatusEndPoint, JSON.stringify(data), { headers: headers })
+      .pipe(
+        retry(1),
+        catchError(error => throwError(() => 'Something is wrong...'))
+      );
+  }
+
+  updateDescription(data:any){
+    const headers = new HttpHeaders()
+    .set('Content-Type', 'application/json')
+    .set('Authorization', 'Basic ' + btoa(this.user.username + ':' + this.user.password));
+
+    return this.http.post(this.changeDescriptionEndpoint, JSON.stringify(data), { headers: headers })
       .pipe(
         retry(1),
         catchError(error => throwError(() => 'Something is wrong...'))

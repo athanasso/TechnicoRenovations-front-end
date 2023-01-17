@@ -28,7 +28,7 @@ export class UserDetailsComponent {
   }
 
   updateItem(response: any) {
-    this.userService.updateEmail(response).subscribe(
+    this.userService.updateEmail({vatNumber: response.vatNumber, email: response.email}).subscribe(
       (res: any) => {
         console.log(res);
       },
@@ -36,7 +36,7 @@ export class UserDetailsComponent {
         console.log(err);
       }
     );
-    this.userService.updatePassword(response).subscribe(
+    this.userService.updatePassword({vatNumber: response.vatNumber, password: response.password}).subscribe(
       (res: any) => {
         console.log(res);
       },
@@ -44,7 +44,7 @@ export class UserDetailsComponent {
         console.log(err);
       }
     );
-    this.userService.updateUsername(response).subscribe(
+    this.userService.updateUsername({vatNumber: response.vatNumber, username: response.username}).subscribe(
       (res: any) => {
         console.log(res);
       },

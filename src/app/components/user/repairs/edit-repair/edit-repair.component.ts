@@ -49,6 +49,21 @@ export class EditRepairComponent {
   }
 
   updateItem(item: any) {
-
+    this.userService.updateRepairStatus({ownerVatNumber: item.ownerVatNumber, repairId: item.repairId, accepted: item.accepted}).subscribe(
+      (res: any) => {
+        console.log(res);
+      },
+      (err: any) => {
+        console.log(err);
+      }
+    );
+    this.userService.updateDescription({ownerVatNumber: item.ownerVatNumber, repairId: item.repairId, description: item.description}).subscribe(
+      (res: any) => {
+        console.log(res);
+      },
+      (err: any) => {
+        console.log(err);
+      }
+    );
   }
 }

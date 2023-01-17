@@ -49,7 +49,7 @@ export class EditPropertyComponent {
   }
 
   updateItem(item: any) {
-    this.userService.updatePropertyAddress(item).subscribe(
+    this.userService.updatePropertyAddress({ownerVatNumber: item.ownerVatNumber, propertyId: item.propertyId, propertyAddress: item.propertyAddress}).subscribe(
       (res: any) => {
         console.log(res);
       },
@@ -57,7 +57,7 @@ export class EditPropertyComponent {
         console.log(err);
       }
     );
-    this.userService.updatePropertyYear(item).subscribe(
+    this.userService.updatePropertyYear({ownerVatNumber: item.ownerVatNumber, propertyId: item.propertyId, yearOfConstruction: item.yearOfConstruction}).subscribe(
       (res: any) => {
         console.log(res);
       },
