@@ -1,3 +1,6 @@
+import { SearchPropertyPageComponent } from './components/admin/owners-and-properties/search-property-page/search-property-page.component';
+import { EditPropertyPageComponent } from './components/admin/owners-and-properties/edit-property-page/edit-property-page.component';
+import { CreatePropertyPageComponent } from './components/admin/owners-and-properties/create-property-page/create-property-page.component';
 import { EditPropertyComponent } from './components/user/property-details/edit-property/edit-property.component';
 import { AdminGuard } from './guards/admin.guard';
 import { UserGuard } from './guards/user.guard';
@@ -37,6 +40,9 @@ const routes: Routes = [
   { path: 'admin/owners_properties/create-owner', component: CreateOwnerPageComponent, canActivate: [AdminGuard] },
   { path: 'admin/owners_properties/edit-owner', component: EditOwnerPageComponent, canActivate: [AdminGuard] },
   { path: 'admin/owners_properties/search-owner', component: SearchOwnerPageComponent, canActivate: [AdminGuard] },
+  { path: 'admin/owners_properties/create-property', component: CreatePropertyPageComponent, canActivate: [AdminGuard] },
+  { path: 'admin/owners_properties/edit-property', component: EditPropertyPageComponent, canActivate: [AdminGuard] },
+  { path: 'admin/owners_properties/search-property', component: SearchPropertyPageComponent, canActivate: [AdminGuard] },
   { path: 'admin/repairs', component: AdminRepairsComponent, canActivate: [AdminGuard] },
   { path: 'admin/repairs/create-repair', component: CreateRepairComponent, canActivate: [AdminGuard] },
   { path: 'admin/repairs/search-repair', component: SearchRepairComponent, canActivate: [AdminGuard] },

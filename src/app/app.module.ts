@@ -27,6 +27,9 @@ import { PropertyDetailsComponent } from './components/user/property-details/pro
 import { UserRepairsComponent } from './components/user/repairs/repairs.component';
 import { EditRepairComponent } from './components/user/repairs/edit-repair/edit-repair.component';
 import { EditPropertyComponent } from './components/user/property-details/edit-property/edit-property.component';
+import { CreatePropertyPageComponent } from './components/admin/owners-and-properties/create-property-page/create-property-page.component';
+import { SearchPropertyPageComponent } from './components/admin/owners-and-properties/search-property-page/search-property-page.component';
+import { EditPropertyPageComponent } from './components/admin/owners-and-properties/edit-property-page/edit-property-page.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +54,10 @@ import { EditPropertyComponent } from './components/user/property-details/edit-p
     PropertyDetailsComponent,
     UserRepairsComponent,
     EditRepairComponent,
-    EditPropertyComponent
+    EditPropertyComponent,
+    CreatePropertyPageComponent,
+    SearchPropertyPageComponent,
+    EditPropertyPageComponent
   ],
   imports: [
     BrowserModule,
