@@ -19,9 +19,7 @@ export class AdminEditPropertyComponent {
   }
 
   search() {
-    if(!this.searchQuery){
-      this.filteredResponse = this.properties.data;
-    } else {
+    if(this.searchQuery){
       this.filteredResponse = this.properties.data.filter((propertyId: string, yearOfConstruction: number ) => {
         return propertyId.includes(this.searchQuery.toLowerCase())
         || yearOfConstruction == parseInt(this.searchQuery);
