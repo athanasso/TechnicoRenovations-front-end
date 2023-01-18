@@ -31,6 +31,7 @@ import { UserEditPropertyComponent } from './components/user/property-details/ed
 import { AdminCreatePropertyComponent } from './components/admin/owners-and-properties/create-property-page/create-property-page.component';
 import { AdminSearchPropertyComponent } from './components/admin/owners-and-properties/search-property-page/search-property-page.component';
 import { AdminEditPropertyComponent } from './components/admin/owners-and-properties/edit-property-page/edit-property-page.component';
+import { UserRegisterPropertyComponent } from './components/user/property-details/register-property/register-property.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { AdminEditPropertyComponent } from './components/admin/owners-and-proper
     AdminCreatePropertyComponent,
     AdminSearchPropertyComponent,
     AdminEditPropertyComponent,
-    EditRepairPageComponent
+    EditRepairPageComponent,
+    UserRegisterPropertyComponent
   ],
   imports: [
     BrowserModule,

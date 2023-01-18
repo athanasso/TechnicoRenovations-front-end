@@ -1,3 +1,4 @@
+import { UserRegisterPropertyComponent } from './components/user/property-details/register-property/register-property.component';
 import { AdminSearchPropertyComponent } from './components/admin/owners-and-properties/search-property-page/search-property-page.component';
 import { AdminEditPropertyComponent } from './components/admin/owners-and-properties/edit-property-page/edit-property-page.component';
 import { AdminCreatePropertyComponent } from './components/admin/owners-and-properties/create-property-page/create-property-page.component';
@@ -34,6 +35,7 @@ const routes: Routes = [
   { path: 'user/user-details', component: UserDetailsComponent, canActivate: [UserGuard]},
   { path: 'user/property-details', component: UserPropertyDetailsComponent, canActivate: [UserGuard] },
   { path: 'user/property-details/edit', component: UserEditPropertyComponent, canActivate: [UserGuard] },
+  { path: 'user/property-details/register', component: UserRegisterPropertyComponent, canActivate: [UserGuard] },
   { path: 'user/repairs', component: UserRepairsComponent, canActivate: [UserGuard] },
   { path: 'user/repairs/edit', component: UserEditRepairComponent, canActivate: [UserGuard] },
   { path: 'admin/home', component: AdminHomeComponent, canActivate: [AdminGuard] },
