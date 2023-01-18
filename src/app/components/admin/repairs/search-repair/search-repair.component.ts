@@ -5,7 +5,7 @@ import { LoggedUserService } from 'src/app/services/logged-user.service';
   selector: 'app-search-repair',
   templateUrl: './search-repair.component.html'
 })
-export class SearchRepairComponent {
+export class AdminSearchRepairComponent {
 
   searchQuery!: string;
   filteredResponse: any;

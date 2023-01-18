@@ -5,7 +5,7 @@ import { LoggedUserService } from 'src/app/services/logged-user.service';
   selector: 'app-search-property-page',
   templateUrl: './search-property-page.component.html'
 })
-export class SearchPropertyPageComponent {
+export class AdminSearchPropertyComponent {
 
   searchQuery!: string;
   filteredResponse: any;

@@ -7,7 +7,7 @@ import { UserService } from 'src/app/services/user/user-service.service';
   selector: 'app-create-repair',
   templateUrl: './create-repair.component.html'
 })
-export class CreateRepairComponent {
+export class AdminCreateRepairComponent {
 
   repairTypeOptions = [
     {value: '1', label: 'Painting'},

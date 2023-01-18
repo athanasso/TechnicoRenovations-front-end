@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   selector: 'app-owners-and-properties',
   templateUrl: './owners-and-properties.component.html'
 })
-export class OwnersAndPropertiesComponent {
+export class AdminOwnersAndPropertiesComponent {
 
   repairs: any;
 

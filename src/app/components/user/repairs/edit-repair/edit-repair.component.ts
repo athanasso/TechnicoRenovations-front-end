@@ -6,7 +6,7 @@ import { UserService } from 'src/app/services/user/user-service.service';
   selector: 'app-edit-repair',
   templateUrl: './edit-repair.component.html'
 })
-export class EditRepairComponent {
+export class UserEditRepairComponent {
 
   searchQuery!: string;
   filteredResponse: any;

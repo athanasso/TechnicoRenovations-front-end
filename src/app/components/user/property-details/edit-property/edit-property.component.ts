@@ -6,7 +6,7 @@ import { UserService } from 'src/app/services/user/user-service.service';
   selector: 'app-edit-property',
   templateUrl: './edit-property.component.html'
 })
-export class EditPropertyComponent {
+export class UserEditPropertyComponent {
 
 
   searchQuery!: string;

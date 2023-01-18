@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-search-owner-page',
   templateUrl: './search-owner-page.component.html'
 })
-export class SearchOwnerPageComponent implements OnInit{
+export class AdminSearchOwnerComponent implements OnInit{
 
   searchQuery!: string;
   filteredResponse: any;

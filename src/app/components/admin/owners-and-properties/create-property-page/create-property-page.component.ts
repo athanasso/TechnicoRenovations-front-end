@@ -8,7 +8,7 @@ import { LoggedUserService } from 'src/app/services/logged-user.service';
   selector: 'app-create-property-page',
   templateUrl: './create-property-page.component.html'
 })
-export class CreatePropertyPageComponent implements OnInit{
+export class AdminCreatePropertyComponent implements OnInit{
 
   propertyTypeOptions = [
     {value: '1', label: 'Apartment Building'},

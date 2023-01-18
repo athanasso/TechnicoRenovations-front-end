@@ -7,7 +7,7 @@ import { UserService } from 'src/app/services/user/user-service.service';
   selector: 'app-property-details',
   templateUrl: './property-details.component.html'
 })
-export class PropertyDetailsComponent implements OnInit{
+export class UserPropertyDetailsComponent implements OnInit{
 
   propertyTypeOptions = [
     {value: '1', label: 'Apartment Building'},

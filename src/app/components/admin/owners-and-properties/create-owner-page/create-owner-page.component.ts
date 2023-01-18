@@ -7,7 +7,7 @@ import { AuthService } from 'src/app/services/auth/auth-service.service';
   selector: 'app-create-owner-page',
   templateUrl: './create-owner-page.component.html'
 })
-export class CreateOwnerPageComponent {
+export class AdminCreateOwnerComponent {
 
   register : any;
   response: any;

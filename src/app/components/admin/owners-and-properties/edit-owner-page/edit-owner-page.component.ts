@@ -7,7 +7,7 @@ import { FormControl } from '@angular/forms';
   selector: 'app-edit-owner-page',
   templateUrl: './edit-owner-page.component.html'
 })
-export class EditOwnerPageComponent implements OnInit {
+export class AdminEditOwnerComponent implements OnInit {
 
   searchQuery!: string;
   filteredResponse: any;
