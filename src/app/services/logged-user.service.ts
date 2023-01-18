@@ -77,6 +77,7 @@ export class LoggedUserService {
     localStorage.removeItem('properties');
     localStorage.removeItem('repairs');
     localStorage.removeItem('owners');
+    localStorage.clear();
     this.user = null;
     this.properties = null;
     this.repairs = null;
