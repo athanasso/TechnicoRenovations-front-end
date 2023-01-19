@@ -29,6 +29,7 @@ export class UserService{
   constructor(private http: HttpClient, private service: LoggedUserService) {this.user = this.service.getUser(); }
 
   getProperties(data: string){
+    this.user = this.service.getUser();
     const headers = new HttpHeaders()
     .set('Content-Type', 'application/json')
     .set('Authorization', 'Basic ' + btoa(this.user.username + ':' + this.user.password));

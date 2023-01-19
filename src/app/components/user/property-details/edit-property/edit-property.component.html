@@ -10,7 +10,7 @@
   <form *ngFor="let item of filteredResponse">
     <div class="form-group">
         <label for="propertyId">Id</label>
-        <input type="text" class="form-control" id="propertyId" [(ngModel)]="item.propertyId" name="propertyId" placeholder="propertyId" />
+        <input type="text" class="form-control" id="propertyId" [(ngModel)]="item.propertyId" name="propertyId" placeholder="propertyId" readonly/>
     </div>
     <div class="form-group">
         <label for="propertyAddress">Address <small class="text-muted">(editable)</small></label>
@@ -18,7 +18,7 @@
     </div>
     <div class="form-group">
         <label for="propertyType">Type</label>
-        <input type="text" class="form-control" id="propertyType" [(ngModel)]="item.propertyType" name="propertyType" placeholder="propertyType" />
+        <input type="text" class="form-control" id="propertyType" [(ngModel)]="item.propertyType" name="propertyType" placeholder="propertyType" readonly/>
     </div>
     <div class="form-group">
         <label for="yearOfConstruction">Construction Year <small class="text-muted">(editable)</small></label>

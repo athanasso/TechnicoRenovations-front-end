@@ -10,15 +10,15 @@
   <form *ngFor="let item of filteredResponse">
     <div class="form-group">
       <label for="accepted">Accepted</label>
-      <input type="checkbox" id="accepted" [checked]="item.accepted" (change)="item.accepted = !item.accepted" >
+      <input type="checkbox" id="accepted" [checked]="item.accepted" (change)="item.accepted = !item.accepted" readonly>
     </div>
     <div class="form-group">
         <label for="status">Status</label>
-        <input type="text" class="form-control" id="status" [(ngModel)]="item.status" name="status" placeholder="status" />
+        <input type="text" class="form-control" id="status" [(ngModel)]="item.status" name="status" placeholder="status" readonly/>
     </div>
     <div class="form-group">
         <label for="repairId">Repair Id</label>
-        <input type="text" class="form-control" id="repairId" [(ngModel)]="item.repairId" name="repairId" placeholder="repairId" />
+        <input type="text" class="form-control" id="repairId" [(ngModel)]="item.repairId" name="repairId" placeholder="repairId" readonly/>
     </div>
     <div class="form-group">
         <label for="desciption">Description <small class="text-muted">(editable)</small></label>
@@ -26,7 +26,7 @@
     </div>
     <div class="form-group">
       <label for="repairType">Type</label>
-      <input type="text" class="form-control" [(ngModel)]="item.repairType" name="repairType" placeholder="repairType" />
+      <input type="text" class="form-control" [(ngModel)]="item.repairType" name="repairType" placeholder="repairType" readonly/>
     </div>
     <div class="form-group">
         <label for="proposedCost">Cost <small class="text-muted">(editable)</small></label>
@@ -34,11 +34,11 @@
     </div>
     <div class="form-group">
         <label for="actualStartDate">Actual Start Date</label>
-        <input type="text" class="form-control" id="actualStartDate" name="actualStartDate" placeholder="actualStartDate" [value]="item.actualStartDate | date:'short'"/>
+        <input type="text" class="form-control" id="actualStartDate" name="actualStartDate" placeholder="actualStartDate" [value]="item.actualStartDate | date:'short'" readonly/>
     </div>
     <div class="form-group">
       <label for="actualEndDate">Actual End Date</label>
-      <input type="text" class="form-control" id="actualEndDate" name="actualEndDate" placeholder="actualEndDate " [value]="item.actualEndDate | date:'short'"/>
+      <input type="text" class="form-control" id="actualEndDate" name="actualEndDate" placeholder="actualEndDate " [value]="item.actualEndDate | date:'short'" readonly/>
     </div>
     <div class="form-group">
       <label for="proposedStartDate">Proposed Start Date <small class="text-muted">(editable)</small></label>

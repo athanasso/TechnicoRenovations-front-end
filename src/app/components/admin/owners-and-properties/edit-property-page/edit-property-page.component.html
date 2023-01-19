@@ -11,7 +11,7 @@
     <form>
       <div class="form-group">
           <label for="propertyId">Property Id</label>
-          <input type="text" class="form-control" id="propertyId" [(ngModel)]="item.propertyId" name="propertyId" placeholder="propertyId" />
+          <input type="text" class="form-control" id="propertyId" [(ngModel)]="item.propertyId" name="propertyId" placeholder="propertyId" readonly/>
       </div>
       <div class="form-group">
           <label for="propertyAddress">Property Address<small class="text-muted">(editable)</small></label>
@@ -19,19 +19,19 @@
       </div>
       <div class="form-group">
           <label for="propertyOwner.name">Owner Name</label>
-          <input type="text" class="form-control" id="propertyOwner.name" [(ngModel)]="item.propertyOwner.name" name="propertyOwner.name" placeholder="propertyOwner name" />
+          <input type="text" class="form-control" id="propertyOwner.name" [(ngModel)]="item.propertyOwner.name" name="propertyOwner.name" placeholder="propertyOwner name" readonly/>
       </div>
       <div class="form-group">
           <label for="propertyOwner.surname">Owner Surname</label>
-          <input type="text" class="form-control" id="propertyOwner.surname" [(ngModel)]="item.propertyOwner.surname" name="propertyOwner.surname" placeholder="propertyOwner surname" />
+          <input type="text" class="form-control" id="propertyOwner.surname" [(ngModel)]="item.propertyOwner.surname" name="propertyOwner.surname" placeholder="propertyOwner surname" readonly/>
       </div>
       <div class="form-group">
           <label for="propertyOwner.vatNumber">Owner Vat</label>
-          <input type="text" class="form-control" id="propertyOwner.vatNumber" [(ngModel)]="item.propertyOwner.vatNumber" name="propertyOwner.vatNumber" placeholder="propertyOwner vatNumber" />
+          <input type="text" class="form-control" id="propertyOwner.vatNumber" [(ngModel)]="item.propertyOwner.vatNumber" name="propertyOwner.vatNumber" placeholder="propertyOwner vatNumber" readonly/>
       </div>
       <div class="form-group">
           <label for="propertyOwner.phoneNumber">Owner Phone Number</label>
-          <input type="text" class="form-control" id="propertyOwner.phoneNumber" [(ngModel)]="item.propertyOwner.phoneNumber" name="propertyOwner.phoneNumber" placeholder="propertyOwner phoneNumber" />
+          <input type="text" class="form-control" id="propertyOwner.phoneNumber" [(ngModel)]="item.propertyOwner.phoneNumber" name="propertyOwner.phoneNumber" placeholder="propertyOwner phoneNumber" readonly/>
       </div>
       <div class="form-group">
           <label for="propertyOwner.email">Owner Email <small class="text-muted">(editable)</small></label>
@@ -39,7 +39,7 @@
       </div>
       <div class="form-group">
         <label for="propertyType">Type</label>
-        <input type="text" class="form-control" id="propertyType" [(ngModel)]="item.propertyType" name="propertyType" placeholder="propertyType" />
+        <input type="text" class="form-control" id="propertyType" [(ngModel)]="item.propertyType" name="propertyType" placeholder="propertyType" readonly/>
       </div>
       <div class="form-group">
         <label for="yearOfConstruction">Construction Year <small class="text-muted">(editable)</small></label>
