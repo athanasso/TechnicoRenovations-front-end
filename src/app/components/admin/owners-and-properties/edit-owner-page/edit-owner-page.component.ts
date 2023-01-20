@@ -20,7 +20,9 @@ export class AdminEditOwnerComponent implements OnInit {
   }
 
   search() {
-    if (this.searchQuery) {
+    if (!this.searchQuery) {
+      this.filteredResponse = this.users.data;
+    } else {
       this.filteredResponse = this.users.data.filter((owner: { email: string; vatNumber: number; }) => {
         return owner.email.toLowerCase().includes(this.searchQuery.toLowerCase())
         || owner.vatNumber == parseInt(this.searchQuery);

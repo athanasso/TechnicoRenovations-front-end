@@ -28,7 +28,9 @@ export class UserEditPropertyComponent {
   }
 
   search() {
-    if(this.searchQuery){
+    if (!this.searchQuery) {
+      this.filteredResponse = this.properties.data;
+    } else {
       this.filteredResponse = this.properties.data.filter((property: { propertyId: string; }) => {
         return property.propertyId.toLowerCase().includes(this.searchQuery.toLowerCase());
       });

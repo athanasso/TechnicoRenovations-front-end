@@ -25,7 +25,9 @@ export class EditRepairPageComponent {
   }
 
   search() {
-    if(this.searchQuery){
+    if (!this.searchQuery) {
+      this.filteredResponse = this.repairs.data;
+    } else {
       this.filteredResponse = this.repairs.data.filter((repair: { status: string; repairId: number; }) => {
         return repair.status.toLowerCase().includes(this.searchQuery.toLowerCase())
         || repair.repairId == parseInt(this.searchQuery);

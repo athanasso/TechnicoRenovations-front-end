@@ -19,10 +19,12 @@ export class AdminEditPropertyComponent {
   }
 
   search() {
-    if(this.searchQuery){
-      this.filteredResponse = this.properties.data.filter((propertyId: string, yearOfConstruction: number ) => {
-        return propertyId.includes(this.searchQuery.toLowerCase())
-        || yearOfConstruction == parseInt(this.searchQuery);
+    if (!this.searchQuery) {
+      this.filteredResponse = this.properties.data;
+    } else {
+      this.filteredResponse = this.properties.data.filter((property: { propertyId: string; yearOfConstruction: number; }) => {
+        return property.propertyId.toLowerCase().includes(this.searchQuery.toLowerCase())
+        || property.yearOfConstruction == parseInt(this.searchQuery);
       });
     }
   }
