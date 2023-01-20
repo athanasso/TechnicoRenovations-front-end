@@ -18,7 +18,9 @@ export class AdminSearchOwnerComponent implements OnInit{
   }
 
   search() {
-    if(this.searchQuery){
+    if (!this.searchQuery) {
+      this.filteredResponse = this.owners.data;
+    } else {
       this.filteredResponse = this.owners.data.filter((owner: { email: string; vatNumber: number; }) => {
         return owner.email.toLowerCase().includes(this.searchQuery.toLowerCase())
         || owner.vatNumber == parseInt(this.searchQuery);
