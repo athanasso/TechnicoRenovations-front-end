@@ -9,9 +9,15 @@ import { UserService } from 'src/app/services/user/user-service.service';
 export class UserDetailsComponent {
 
   user : any;
+  currentEmail!: String;
+  currentPassword!: String;
+  currentUsername!: String;
 
   constructor(private userService: UserService, private loggedUser: LoggedUserService){
     this.user = loggedUser.getUser();
+    this.currentEmail = this.user.email;
+    this.currentPassword = this.user.password;
+    this.currentUsername = this.user.username;
   }
 
   deleteUser(response:any) {
@@ -28,29 +34,39 @@ export class UserDetailsComponent {
   }
 
   updateItem(response: any) {
-    this.userService.updateEmail({vatNumber: response.vatNumber, email: response.email}).subscribe(
-      (res: any) => {
-        console.log(res);
-      },
-      (err: any) => {
-        console.log(err);
-      }
-    );
-    this.userService.updatePassword({vatNumber: response.vatNumber, password: response.password}).subscribe(
-      (res: any) => {
-        console.log(res);
-      },
-      (err: any) => {
-        console.log(err);
-      }
-    );
-    this.userService.updateUsername({vatNumber: response.vatNumber, username: response.username}).subscribe(
-      (res: any) => {
-        console.log(res);
-      },
-      (err: any) => {
-        console.log(err);
-      }
-    );
+    if (this.currentEmail != response.email){
+      this.userService.updateEmail({vatNumber: response.vatNumber, email: response.email}).subscribe(
+        (res: any) => {
+          console.log(res);
+        },
+        (err: any) => {
+          if (err.status === 404 && err.error === "Doesn't exist") {
+            alert("The email already exists");
+          }
+        }
+      );
+    }
+    if (this.currentPassword != response.password){
+      this.userService.updatePassword({vatNumber: response.vatNumber, password: response.password}).subscribe(
+        (res: any) => {
+          console.log(res);
+        },
+        (err: any) => {
+          console.log(err);
+        }
+      );
+    }
+    if (this.currentUsername != response.username){
+      this.userService.updateUsername({vatNumber: response.vatNumber, username: response.username}).subscribe(
+        (res: any) => {
+          console.log(res);
+        },
+        (err: any) => {
+          if (err.status === 404 && err.error === "Doesn't exist") {
+            alert("The username already exists");
+          }
+        }
+      );
+    }
   }
 }

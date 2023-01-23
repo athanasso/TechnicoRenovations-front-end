@@ -12,6 +12,8 @@ export class UserEditPropertyComponent {
   searchQuery!: string;
   filteredResponse: any;
   properties: any;
+  currentAddress!: string;
+  currectYear!: number;
 
   repairTypeOptions = [
     {value: '1', label: 'Painting'},
@@ -35,6 +37,8 @@ export class UserEditPropertyComponent {
         return property.propertyId.toLowerCase().includes(this.searchQuery.toLowerCase());
       });
     }
+    this.currentAddress = this.filteredResponse.property.propertyAddress;
+    this.currectYear = this.filteredResponse.property.yearOfConstruction;
   }
 
   deleteProperty(item:any) {
@@ -51,21 +55,25 @@ export class UserEditPropertyComponent {
   }
 
   updateItem(item: any) {
-    this.userService.updatePropertyAddress({ownerVatNumber: item.ownerVatNumber, propertyId: item.propertyId, propertyAddress: item.propertyAddress}).subscribe(
-      (res: any) => {
-        console.log(res);
-      },
-      (err: any) => {
-        console.log(err);
-      }
-    );
-    this.userService.updatePropertyYear({ownerVatNumber: item.ownerVatNumber, propertyId: item.propertyId, yearOfConstruction: item.yearOfConstruction}).subscribe(
-      (res: any) => {
-        console.log(res);
-      },
-      (err: any) => {
-        console.log(err);
-      }
-    );
+    if (this.currentAddress != item.propertyAddress){
+      this.userService.updatePropertyAddress({ownerVatNumber: item.ownerVatNumber, propertyId: item.propertyId, propertyAddress: item.propertyAddress}).subscribe(
+        (res: any) => {
+          console.log(res);
+        },
+        (err: any) => {
+          console.log(err);
+        }
+      );
+    }
+    if (this.currectYear != item.yearOfConstruction){
+      this.userService.updatePropertyYear({ownerVatNumber: item.ownerVatNumber, propertyId: item.propertyId, yearOfConstruction: item.yearOfConstruction}).subscribe(
+        (res: any) => {
+          console.log(res);
+        },
+        (err: any) => {
+          console.log(err);
+        }
+      );
+    }
   }
 }

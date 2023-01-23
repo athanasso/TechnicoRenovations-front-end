@@ -11,6 +11,8 @@ export class UserEditRepairComponent {
   searchQuery!: string;
   filteredResponse: any;
   repairs: any;
+  currentStatus: any;
+  currentDescription: any;
 
   constructor(private service: LoggedUserService, private userService: UserService) { }
 
@@ -27,6 +29,8 @@ export class UserEditRepairComponent {
         || repair.repairId == parseInt(this.searchQuery);
       });
     }
+    this.currentStatus = this.filteredResponse.repair.status;
+    this.currentDescription = this.filteredResponse.repair.description;
   }
 
   deleteRepair(item:any) {
@@ -43,21 +47,25 @@ export class UserEditRepairComponent {
   }
 
   updateItem(item: any) {
-    this.userService.updateRepairStatus({ownerVatNumber: item.ownerVatNumber, repairId: item.repairId, accepted: item.accepted}).subscribe(
-      (res: any) => {
-        console.log(res);
-      },
-      (err: any) => {
-        console.log(err);
-      }
-    );
-    this.userService.updateDescription({ownerVatNumber: item.ownerVatNumber, repairId: item.repairId, description: item.description}).subscribe(
-      (res: any) => {
-        console.log(res);
-      },
-      (err: any) => {
-        console.log(err);
-      }
-    );
+    if (this.currentStatus != item.accepted){
+      this.userService.updateRepairStatus({ownerVatNumber: item.ownerVatNumber, repairId: item.repairId, accepted: item.accepted}).subscribe(
+        (res: any) => {
+          console.log(res);
+        },
+        (err: any) => {
+          console.log(err);
+        }
+      );
+    }
+    if (this.currentDescription != item.description){
+      this.userService.updateDescription({ownerVatNumber: item.ownerVatNumber, repairId: item.repairId, description: item.description}).subscribe(
+        (res: any) => {
+          console.log(res);
+        },
+        (err: any) => {
+          console.log(err);
+        }
+      );
+    }
   }
 }

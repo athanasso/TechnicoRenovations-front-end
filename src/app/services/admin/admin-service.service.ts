@@ -26,8 +26,7 @@ export class AdminService {
 
     return this.http.post(this.proposeCostEndPoint, JSON.stringify(data), { headers: headers })
       .pipe(
-        retry(1),
-        catchError(error => throwError(() => 'Something is wrong...'))
+        catchError(error => throwError(() => error))
       );
   }
 
@@ -40,8 +39,7 @@ export class AdminService {
 
     return this.http.post(this.proposeDatesEndPoint, JSON.stringify(data), { headers: headers })
       .pipe(
-        retry(1),
-        catchError(error => throwError(() => 'Something is wrong...'))
+        catchError(error => throwError(() => error))
       );
   }
 

@@ -12,6 +12,9 @@ export class AdminEditOwnerComponent implements OnInit {
   searchQuery!: string;
   filteredResponse: any;
   users: any;
+  currentUsername: any;
+  currentPassword: any;
+  currentEmail: any;
 
   constructor(private service: LoggedUserService,private userService: UserService) { }
 
@@ -28,6 +31,9 @@ export class AdminEditOwnerComponent implements OnInit {
         || owner.vatNumber == parseInt(this.searchQuery);
       });
     }
+    this.currentEmail = this.filteredResponse.owner.email;
+    this.currentPassword = this.filteredResponse.owner.password;
+    this.currentUsername = this.filteredResponse.owner.username;
   }
 
   deleteUser(item:any) {
@@ -45,18 +51,20 @@ export class AdminEditOwnerComponent implements OnInit {
 
   updateItem(item: any) {
     // check if the email has changed
-    if (item.email) {
+    if (this.currentEmail != item.email) {
       this.userService.updateEmail({vatNumber: item.vatNumber, email: item.email}).subscribe(
         (res: any) => {
           console.log(res);
         },
         (err: any) => {
-          console.log(err);
+          if (err.status === 404 && err.error === "Doesn't exist") {
+            alert("The email already exists");
+          }
         }
       );
     }
     // check if the password has changed
-    if (item.password) {
+    if (this.currentPassword != item.password) {
       this.userService.updatePassword({vatNumber: item.vatNumber, password: item.password}).subscribe(
         (res: any) => {
           console.log(res);
@@ -67,13 +75,15 @@ export class AdminEditOwnerComponent implements OnInit {
       );
     }
     // check if the username has changed
-    if (item.username) {
+    if (this.currentUsername != item.username) {
       this.userService.updateUsername({vatNumber: item.vatNumber, username: item.username}).subscribe(
         (res: any) => {
           console.log(res);
         },
         (err: any) => {
-          console.log(err);
+          if (err.status === 404 && err.error === "Doesn't exist") {
+            alert("The username already exists");
+          }
         }
       );
     }

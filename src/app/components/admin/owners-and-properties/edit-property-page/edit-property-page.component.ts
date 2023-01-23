@@ -11,6 +11,9 @@ export class AdminEditPropertyComponent {
   searchQuery!: string;
   filteredResponse: any;
   properties: any;
+  currentAddress!: string;
+  currentYear!: number;
+  currentEmail!: string;
 
   constructor(private service: LoggedUserService, private userService: UserService) { }
 
@@ -27,6 +30,10 @@ export class AdminEditPropertyComponent {
         || property.yearOfConstruction == parseInt(this.searchQuery);
       });
     }
+
+    this.currentAddress = this.filteredResponse.property.propertyAddress;
+    this.currentYear = this.filteredResponse.property.yearOfConstruction;
+    this.currentEmail = this.filteredResponse.propertyOwner.email;
   }
 
   deleteUser(item:any) {
@@ -43,29 +50,35 @@ export class AdminEditPropertyComponent {
   }
 
   updateItem(item: any) {
-    this.userService.updatePropertyAddress({ownerVatNumber: item.propertyOwner.vatNumber, propertyId: item.propertyId, propertyAddress: item.propertyAddress}).subscribe(
-      (res: any) => {
-        console.log(res);
-      },
-      (err: any) => {
-        console.log(err);
-      }
-    );
-    this.userService.updatePropertyYear({ownerVatNumber: item.propertyOwner.vatNumber, propertyId: item.propertyId, yearOfConstruction: item.yearOfConstruction}).subscribe(
-      (res: any) => {
-        console.log(res);
-      },
-      (err: any) => {
-        console.log(err);
-      }
-    );
-    this.userService.updateEmail({vatNumber: item.propertyOwner.vatNumber, email: item.propertyOwner.email}).subscribe(
-      (res: any) => {
-        console.log(res);
-      },
-      (err: any) => {
-        console.log(err);
-      }
-    );
+    if (this.currentAddress != item.propertyAddress){
+      this.userService.updatePropertyAddress({ownerVatNumber: item.propertyOwner.vatNumber, propertyId: item.propertyId, propertyAddress: item.propertyAddress}).subscribe(
+        (res: any) => {
+          console.log(res);
+        },
+        (err: any) => {
+          console.log(err);
+        }
+      );
+    }
+    if (this.currentYear != item.yearOfConstruction){
+      this.userService.updatePropertyYear({ownerVatNumber: item.propertyOwner.vatNumber, propertyId: item.propertyId, yearOfConstruction: item.yearOfConstruction}).subscribe(
+        (res: any) => {
+          console.log(res);
+        },
+        (err: any) => {
+          console.log(err);
+        }
+      );
+    }
+    if (this.currentEmail != item.propertyOwner.email){
+      this.userService.updateEmail({vatNumber: item.propertyOwner.vatNumber, email: item.propertyOwner.email}).subscribe(
+        (res: any) => {
+          console.log(res);
+        },
+        (err: any) => {
+          console.log(err);
+        }
+      );
+    }
   }
 }

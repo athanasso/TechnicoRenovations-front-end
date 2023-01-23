@@ -60,8 +60,7 @@ export class UserService{
 
     return this.http.post(this.correctOwnerUsernameEndPoint, JSON.stringify(data), { headers: headers })
       .pipe(
-        retry(1),
-        catchError(error => throwError(() => 'Something is wrong...'))
+        catchError(error => throwError(() => error))
       );
   }
 
@@ -72,8 +71,7 @@ export class UserService{
 
     return this.http.post(this.correctOwnerEmailEndPoint, JSON.stringify(data), { headers: headers })
       .pipe(
-        retry(1),
-        catchError(error => throwError(() => 'Something is wrong...'))
+        catchError(error => throwError(() => error))
       );
   }
 
@@ -84,8 +82,7 @@ export class UserService{
 
     return this.http.post(this.correctOwnerPasswordEndPoint, JSON.stringify(data), { headers: headers })
       .pipe(
-        retry(1),
-        catchError(error => throwError(() => 'Something is wrong...'))
+        catchError(error => throwError(() => error))
       );
   }
 
@@ -96,8 +93,7 @@ export class UserService{
 
     return this.http.post(this.changeRepairStatusEndPoint, JSON.stringify(data), { headers: headers })
       .pipe(
-        retry(1),
-        catchError(error => throwError(() => 'Something is wrong...'))
+        catchError(error => throwError(() => error))
       );
   }
 
@@ -108,8 +104,7 @@ export class UserService{
 
     return this.http.post(this.changeDescriptionEndpoint, JSON.stringify(data), { headers: headers })
       .pipe(
-        retry(1),
-        catchError(error => throwError(() => 'Something is wrong...'))
+        catchError(error => throwError(() => error))
       );
   }
 
@@ -120,8 +115,7 @@ export class UserService{
 
     return this.http.post(this.correctPropertyAddressEndPoint, JSON.stringify(data), { headers: headers })
       .pipe(
-        retry(1),
-        catchError(error => throwError(() => 'Something is wrong...'))
+        catchError(error => throwError(() => error))
       );
   }
 
@@ -132,8 +126,7 @@ export class UserService{
 
     return this.http.post(this.correctPropertyYearEndPoint, JSON.stringify(data), { headers: headers })
       .pipe(
-        retry(1),
-        catchError(error => throwError(() => 'Something is wrong...'))
+        catchError(error => throwError(() => error))
       );
   }
 

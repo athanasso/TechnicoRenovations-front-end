@@ -12,6 +12,8 @@ export class EditRepairPageComponent {
   searchQuery!: string;
   filteredResponse: any;
   repairs: any;
+  currentDescription: any;
+  currentCost: any;
 
   constructor(private service: LoggedUserService, private userService: UserService, private adminService: AdminService) { }
 
@@ -33,6 +35,8 @@ export class EditRepairPageComponent {
         || repair.repairId == parseInt(this.searchQuery);
       });
     }
+    this.currentDescription = this.filteredResponse.repair.description;
+    this.currentCost = this.filteredResponse.repair.proposedCost;
   }
 
   deleteRepair(item:any) {
@@ -49,23 +53,26 @@ export class EditRepairPageComponent {
   }
 
   updateItem(item: any) {
-    this.userService.updateDescription({ownerVatNumber: item.propertyOwner.vatNumber, repairId: item.repairId, description: item.desciption}).subscribe(
-      (res: any) => {
-        console.log(res);
-      },
-      (err: any) => {
-        console.log(err);
-      }
-    );
-
-    this.adminService.proposeCost({repairId: item.repairId, proposedCost: item.proposedCost}).subscribe(
-      (res: any) => {
-        console.log(res);
-      },
-      (err: any) => {
-        console.log(err);
-      }
-    );
+    if (this.currentDescription != item.desciption){
+      this.userService.updateDescription({ownerVatNumber: item.propertyOwner.vatNumber, repairId: item.repairId, description: item.desciption}).subscribe(
+        (res: any) => {
+          console.log(res);
+        },
+        (err: any) => {
+          console.log(err);
+        }
+      );
+    }
+    if (this.currentCost != item.proposedCost){
+      this.adminService.proposeCost({repairId: item.repairId, proposedCost: item.proposedCost}).subscribe(
+        (res: any) => {
+          console.log(res);
+        },
+        (err: any) => {
+          console.log(err);
+        }
+      );
+    }
 
     this.adminService.proposeDates({repairId: item.repairId, proposedStartDate: this.formatDate(item.proposedStartDate), proposedEndDate: this.formatDate(item.proposedEndDate)}).subscribe(
       (res: any) => {
