@@ -44,7 +44,11 @@ export class UserRegisterPropertyComponent {
           next: data => {
             this.response = data;
           },
-          error: er => this.message = "Error" + er.message,
+          error: er =>{
+            if (er.status === 404 && er.error === "Duplicate entry") {
+              alert("The Property already exists or your vat is wrong");
+            }
+          },
           complete: () => this.message = "Completed..."
         });
       } else {
