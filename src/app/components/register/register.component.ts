@@ -45,13 +45,17 @@ export class RegisterComponent implements OnInit {
         "phoneNumber": this.userRegisterForm.get("phoneNumber")?.value,
       };
 
-      this.router.navigate(['/login']);
-
       this.service.register(this.register).subscribe({
         next: data => {
           this.response = data;
         },
-        error: er => this.message = "Error" + er.message,
+        error: er =>{
+          if (er.status === 404 && er.error === 'Invalid Credentials') {
+            alert("The user already exists");
+          } else {
+            this.router.navigate(['/login']);
+          }
+        },
         complete: () => this.message = "Completed..."
       });
     }

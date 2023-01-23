@@ -32,8 +32,7 @@ export class AuthService {
 
     return this.http.post(this.RegisterEndPoint, JSON.stringify(data), { headers: headers })
       .pipe(
-        retry(1),
-        catchError(error => throwError(() => 'Something is wrong...'))
+        catchError(error => throwError(() => error))
       );
   }
 
