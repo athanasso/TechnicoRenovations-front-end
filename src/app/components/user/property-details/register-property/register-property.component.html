@@ -5,7 +5,7 @@
       <h1>Register a property</h1>
       <form method="post" [formGroup]="propertyRegisterForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
-          <label for="propertyId">PropertyId</label>
+          <label for="propertyId">PropertyId</label><span class="text-danger">*</span>
           <input formControlName="propertyId" type="text" class="form-control" id="propertyId" aria-describedby="propertyIdHelp"
             placeholder="Enter propertyId" />
             <div *ngIf="propertyRegisterForm.get('propertyId')?.invalid && propertyRegisterForm.get('propertyId')?.touched" class="text-danger">
@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="form-group">
-          <label for="propertyAddress">Address</label>
+          <label for="propertyAddress">Address</label><span class="text-danger">*</span>
           <input formControlName="propertyAddress" type="text" class="form-control" id="propertyAddress" placeholder="propertyAddress" />
           <div *ngIf="propertyRegisterForm.get('propertyAddress')?.invalid && propertyRegisterForm.get('propertyAddress')?.touched" class="text-danger">
             <div *ngIf="propertyRegisterForm.get('propertyAddress')?.errors">
@@ -24,7 +24,7 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="yearOfConstruction">Construction year</label>
+          <label for="yearOfConstruction">Construction year</label><span class="text-danger">*</span>
           <input formControlName="yearOfConstruction" type="text" class="form-control" id="yearOfConstruction" placeholder="yearOfConstruction" />
           <div *ngIf="propertyRegisterForm.get('yearOfConstruction')?.invalid && propertyRegisterForm.get('yearOfConstruction')?.touched" class="text-danger">
             <div *ngIf="propertyRegisterForm.get('yearOfConstruction')?.errors">
@@ -33,7 +33,7 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="propertyType">Type</label>
+          <label for="propertyType">Type</label><span class="text-danger">*</span>
           <div class="form-check" *ngFor="let option of propertyTypeOptions">
             <input class="form-check-input" type="radio" name="propertyType" formControlName="propertyType" [value]="option.value">
             <label class="form-check-label">{{ option.label }}</label>
@@ -45,7 +45,7 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="ownerVatNumber">Your vat Number</label>
+          <label for="ownerVatNumber">Your vat Number</label><span class="text-danger">*</span>
           <input formControlName="ownerVatNumber" type="text" class="form-control" id="ownerVatNumber" placeholder="vatNumber" />
           <div *ngIf="propertyRegisterForm.get('ownerVatNumber')?.invalid && propertyRegisterForm.get('ownerVatNumber')?.touched" class="text-danger">
             <div *ngIf="propertyRegisterForm.get('ownerVatNumber')?.errors">
