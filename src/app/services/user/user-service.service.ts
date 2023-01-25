@@ -23,6 +23,7 @@ export class UserService{
   private readonly deletePropertyEndPoint = 'http://localhost:8080/shop/api/user/property/delete_property';
   private readonly deleteRepairEndPoint = 'http://localhost:8080/shop/api/user/repair/delete_property_repair';
   private readonly deleteOwnerEndPoint = 'http://localhost:8080/shop/api/user/owner/delete_owner';
+  private readonly userInfoEndPoint = 'http://localhost:8080/shop/api/user/get_user/';
 
   user: any;
 
@@ -35,6 +36,19 @@ export class UserService{
     .set('Authorization', 'Basic ' + btoa(this.user.username + ':' + this.user.password));
 
     return this.http.get(this.propertiesEndPoint+data, { headers: headers })
+      .pipe(
+        retry(1),
+        catchError(error => throwError(() => 'Something is wrong...'))
+      );
+  }
+
+  getUser(data: string){
+    this.user = this.service.getUser();
+    const headers = new HttpHeaders()
+    .set('Content-Type', 'application/json')
+    .set('Authorization', 'Basic ' + btoa(this.user.username + ':' + this.user.password));
+
+    return this.http.get(this.userInfoEndPoint+data, { headers: headers })
       .pipe(
         retry(1),
         catchError(error => throwError(() => 'Something is wrong...'))
