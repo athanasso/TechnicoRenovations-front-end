@@ -8,12 +8,13 @@ import { UserService } from 'src/app/services/user/user-service.service';
 })
 export class UserEditPropertyComponent {
 
-
+  user: any;
   searchQuery!: string;
   filteredResponse: any;
   properties: any;
   currentAddress!: string;
   currectYear!: number;
+  message = '';
 
   repairTypeOptions = [
     {value: '1', label: 'Painting'},
@@ -23,7 +24,7 @@ export class UserEditPropertyComponent {
     {value: '5', label: 'Electrical work'}
   ];
 
-  constructor(private service: LoggedUserService, private userService: UserService) { }
+  constructor(private service: LoggedUserService, private userService: UserService, private loggedUser: LoggedUserService) { this.user = loggedUser.getUser();}
 
   ngOnInit(): void {
     this.properties = this.service.getProperties();
@@ -75,5 +76,13 @@ export class UserEditPropertyComponent {
         }
       );
     }
+
+    this.userService.getProperties(this.user.vatNumber).subscribe({
+      next: data => {
+        this.loggedUser.setProperties(data);
+      },
+      error: er => this.message = "Error" + er.message,
+      complete: () => this.message = "Completed..."
+    });
   }
 }

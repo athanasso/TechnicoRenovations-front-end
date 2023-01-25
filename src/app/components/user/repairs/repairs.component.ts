@@ -10,6 +10,7 @@ import { UserService } from 'src/app/services/user/user-service.service';
 })
 export class UserRepairsComponent implements OnInit{
 
+  user: any;
   searchQuery!: string;
   filteredResponse: any;
   repairs: any;
@@ -17,9 +18,10 @@ export class UserRepairsComponent implements OnInit{
   response: any;
   message = '';
 
-  constructor(private service: LoggedUserService, private router: Router, private UserService: UserService, private fb: FormBuilder) { }
+  constructor(private service: LoggedUserService, private router: Router, private userService: UserService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.user = this.service.getUser();
     this.repairs = this.service.getRepairs();
   }
 
@@ -48,14 +50,23 @@ export class UserRepairsComponent implements OnInit{
       "repairType": this.repairRegisterForm.get("repairType")?.value
     };
 
-    this.router.navigate(['user/home']);
-
-    this.UserService.createRepair(this.register).subscribe({
+    this.userService.createRepair(this.register).subscribe({
       next: data => {
         this.response = data;
       },
       error: er => this.message = "Error" + er.message,
       complete: () => this.message = "Completed..."
+    });
+
+    this.userService.getRepairs(this.user.vatNumber).subscribe({
+      next: data => {
+        this.service.setRepairs(data);
+      },
+      error: er => this.message = "Error" + er.message,
+      complete: () => {
+        this.message = "Completed...";
+        this.router.navigate(['user/home']);
+      }
     });
   }
 }

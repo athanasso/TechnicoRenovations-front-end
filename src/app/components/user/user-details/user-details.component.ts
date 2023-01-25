@@ -12,6 +12,8 @@ export class UserDetailsComponent {
   currentEmail!: String;
   currentPassword!: String;
   currentUsername!: String;
+  message = '';
+  temp : any;
 
   constructor(private userService: UserService, private loggedUser: LoggedUserService){
     this.user = loggedUser.getUser();
@@ -68,5 +70,14 @@ export class UserDetailsComponent {
         }
       );
     }
+
+    this.userService.getUser().subscribe({
+      next: data => {
+        this.temp = data;
+        this.loggedUser.setUser(this.temp.data);
+      },
+      error: () => this.message = "Error: Invalid credentials.",
+      complete: () => this.message = "Completed..."
+    });
   }
 }

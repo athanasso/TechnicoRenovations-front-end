@@ -2,6 +2,7 @@ import { LoggedUserService } from 'src/app/services/logged-user.service';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user/user-service.service';
 import { FormControl } from '@angular/forms';
+import { AdminService } from 'src/app/services/admin/admin-service.service';
 
 @Component({
   selector: 'app-edit-owner-page',
@@ -15,8 +16,9 @@ export class AdminEditOwnerComponent implements OnInit {
   currentUsername: any;
   currentPassword: any;
   currentEmail: any;
+  message = '';
 
-  constructor(private service: LoggedUserService,private userService: UserService) { }
+  constructor(private service: LoggedUserService,private userService: UserService, private adminService: AdminService, private loggedUser: LoggedUserService) { }
 
   ngOnInit(): void {
     this.users = this.service.getOwners();
@@ -87,5 +89,13 @@ export class AdminEditOwnerComponent implements OnInit {
         }
       );
     }
+
+    this.adminService.getOwners().subscribe({
+      next: data => {
+        this.loggedUser.setOwners(data);
+      },
+      error: er => this.message = "Error" + er.message,
+      complete: () => this.message = "Completed..."
+    });
   }
 }

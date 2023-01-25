@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AdminService } from 'src/app/services/admin/admin-service.service';
+import { LoggedUserService } from 'src/app/services/logged-user.service';
 import { UserService } from 'src/app/services/user/user-service.service';
 
 @Component({
@@ -21,7 +23,7 @@ export class AdminCreateRepairComponent {
   response: any;
   message = '';
 
-  constructor(private router: Router, private service: UserService, private fb: FormBuilder) {}
+  constructor(private router: Router, private service: UserService, private fb: FormBuilder, private loggedUser: LoggedUserService, private adminService: AdminService) {}
 
   repairRegisterForm: FormGroup = this.fb.group({
     ownerVatNumber: this.fb.control("", [Validators.required]),
@@ -43,14 +45,24 @@ export class AdminCreateRepairComponent {
         "repairType": this.repairRegisterForm.get("repairType")?.value
       };
 
-      this.router.navigate(['admin/home']);
-
       this.service.createRepair(this.register).subscribe({
         next: data => {
           this.response = data;
         },
         error: er => this.message = "Error" + er.message,
-        complete: () => this.message = "Completed..."
+        complete: () => {
+          this.message = "Completed...";
+          this.adminService.getPropertyRepairs().subscribe({
+            next: data => {
+              this.loggedUser.setRepairs(data);
+            },
+            error: er => this.message = "Error" + er.message,
+            complete: () => {
+              this.message = "Completed...";
+              this.router.navigate(['admin/home']);
+            }
+          });
+        }
       });
     }
   }

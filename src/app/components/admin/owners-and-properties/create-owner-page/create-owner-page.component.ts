@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AdminService } from 'src/app/services/admin/admin-service.service';
 import { AuthService } from 'src/app/services/auth/auth-service.service';
+import { LoggedUserService } from 'src/app/services/logged-user.service';
 
 @Component({
   selector: 'app-create-owner-page',
@@ -13,7 +15,7 @@ export class AdminCreateOwnerComponent {
   response: any;
   message = '';
 
-  constructor(private router: Router, private service: AuthService, private fb: FormBuilder) {}
+  constructor(private router: Router, private service: AuthService, private fb: FormBuilder, private adminService: AdminService, private loggedUser: LoggedUserService) {}
 
   goToLogin() {
     this.router.navigate(['/login']);
@@ -53,6 +55,13 @@ export class AdminCreateOwnerComponent {
           if (er.status === 404 && er.error === 'Invalid Credentials') {
             alert("The user already exists");
           } else {
+            this.adminService.getOwners().subscribe({
+              next: data => {
+                this.loggedUser.setOwners(data);
+              },
+              error: er => this.message = "Error" + er.message,
+              complete: () => this.message = "Completed..."
+            });
             this.router.navigate(['/admin/home']);
           }
         },

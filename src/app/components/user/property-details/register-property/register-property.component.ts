@@ -9,6 +9,7 @@ import { UserService } from 'src/app/services/user/user-service.service';
 })
 export class UserRegisterPropertyComponent {
 
+  user:  any;
   register : any;
   response : any;
   message : any;
@@ -19,7 +20,7 @@ export class UserRegisterPropertyComponent {
     {value: '3', label: 'Detached House'}
   ];
 
-  constructor(private loggedUser: LoggedUserService, private fb: FormBuilder, private service: UserService){}
+  constructor(private loggedUser: LoggedUserService, private fb: FormBuilder, private service: UserService) { this.user = loggedUser.getUser();}
 
   propertyRegisterForm: FormGroup = this.fb.group({
     propertyId: this.fb.control("",[Validators.required]),
@@ -49,7 +50,16 @@ export class UserRegisterPropertyComponent {
               alert("The Property already exists or your vat is wrong");
             }
           },
-          complete: () => this.message = "Completed..."
+          complete: () => {
+            this.message = "Completed...";
+            this.service.getProperties(this.user.vatNumber).subscribe({
+              next: data => {
+                this.loggedUser.setProperties(data);
+              },
+              error: er => this.message = "Error" + er.message,
+              complete: () => this.message = "Completed..."
+            });
+          }
         });
       } else {
         console.log("wrong ownerVatNumber")

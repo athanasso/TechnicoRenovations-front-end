@@ -42,13 +42,13 @@ export class UserService{
       );
   }
 
-  getUser(data: string){
+  getUser(){
     this.user = this.service.getUser();
     const headers = new HttpHeaders()
     .set('Content-Type', 'application/json')
     .set('Authorization', 'Basic ' + btoa(this.user.username + ':' + this.user.password));
 
-    return this.http.get(this.userInfoEndPoint+data, { headers: headers })
+    return this.http.get(this.userInfoEndPoint+this.user.vatNumber, { headers: headers })
       .pipe(
         retry(1),
         catchError(error => throwError(() => 'Something is wrong...'))

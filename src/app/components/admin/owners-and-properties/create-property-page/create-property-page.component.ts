@@ -3,6 +3,7 @@ import { UserService } from 'src/app/services/user/user-service.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoggedUserService } from 'src/app/services/logged-user.service';
+import { AdminService } from 'src/app/services/admin/admin-service.service';
 
 @Component({
   selector: 'app-create-property-page',
@@ -21,7 +22,7 @@ export class AdminCreatePropertyComponent implements OnInit{
   response : any;
   message : any;
 
-  constructor(private loggedUser: LoggedUserService, private fb: FormBuilder, private service: UserService, private router: Router){}
+  constructor(private loggedUser: LoggedUserService, private fb: FormBuilder, private service: UserService, private router: Router, private adminService: AdminService){}
 
   propertyRegisterForm: FormGroup = this.fb.group({
     propertyId: this.fb.control("",[Validators.required]),
@@ -56,6 +57,16 @@ export class AdminCreatePropertyComponent implements OnInit{
         },
         complete: () => {
           this.message = "Completed...";
+          this.adminService.getPropertyRepairs().subscribe({
+            next: data => {
+              this.loggedUser.setRepairs(data);
+            },
+            error: er => this.message = "Error" + er.message,
+            complete: () => {
+              this.message = "Completed...";
+              this.router.navigate(['admin/home']);
+            }
+          });
           this.router.navigate(["/admin/owners_properties"]);
         }
       });

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AdminService } from 'src/app/services/admin/admin-service.service';
 import { LoggedUserService } from 'src/app/services/logged-user.service';
 import { UserService } from 'src/app/services/user/user-service.service';
 
@@ -14,8 +15,9 @@ export class AdminEditPropertyComponent {
   currentAddress!: string;
   currentYear!: number;
   currentEmail!: string;
+  message = '';
 
-  constructor(private service: LoggedUserService, private userService: UserService) { }
+  constructor(private service: LoggedUserService, private userService: UserService, private adminService: AdminService, private loggedUser: LoggedUserService) { }
 
   ngOnInit(): void {
     this.properties = this.service.getProperties();
@@ -80,5 +82,15 @@ export class AdminEditPropertyComponent {
         }
       );
     }
+
+    this.adminService.getPropertyRepairs().subscribe({
+      next: data => {
+        this.loggedUser.setRepairs(data);
+      },
+      error: er => this.message = "Error" + er.message,
+      complete: () => {
+        this.message = "Completed...";
+      }
+    });
   }
 }

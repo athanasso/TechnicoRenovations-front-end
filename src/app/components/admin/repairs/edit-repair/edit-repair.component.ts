@@ -1,5 +1,5 @@
 import { LoggedUserService } from 'src/app/services/logged-user.service';
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { AdminService } from 'src/app/services/admin/admin-service.service';
 import { UserService } from 'src/app/services/user/user-service.service';
 
@@ -14,8 +14,12 @@ export class EditRepairPageComponent {
   repairs: any;
   currentDescription: any;
   currentCost: any;
+  message = '';
+  @ViewChild('proposedStartDate') proposedStartDate!: ElementRef;
+  @ViewChild('proposedEndDate') proposedEndDate!: ElementRef;
 
-  constructor(private service: LoggedUserService, private userService: UserService, private adminService: AdminService) { }
+
+  constructor(private service: LoggedUserService, private userService: UserService, private adminService: AdminService, private loggedUser: LoggedUserService) { }
 
   formatDate(date: string): string {
     const dateArray = date.split('-');
@@ -74,13 +78,25 @@ export class EditRepairPageComponent {
       );
     }
 
-    this.adminService.proposeDates({repairId: item.repairId, proposedStartDate: this.formatDate(item.proposedStartDate), proposedEndDate: this.formatDate(item.proposedEndDate)}).subscribe(
-      (res: any) => {
-        console.log(res);
+    if (this.proposedStartDate.nativeElement.dirty && this.proposedEndDate.nativeElement.dirty){
+      this.adminService.proposeDates({repairId: item.repairId, proposedStartDate: this.formatDate(item.proposedStartDate), proposedEndDate: this.formatDate(item.proposedEndDate)}).subscribe(
+        (res: any) => {
+          console.log(res);
+        },
+        (err: any) => {
+          console.log(err);
+        }
+      );
+    }
+
+    this.adminService.getPropertyRepairs().subscribe({
+      next: data => {
+        this.loggedUser.setRepairs(data);
       },
-      (err: any) => {
-        console.log(err);
+      error: er => this.message = "Error" + er.message,
+      complete: () => {
+        this.message = "Completed...";
       }
-    );
+    });
    }
 }

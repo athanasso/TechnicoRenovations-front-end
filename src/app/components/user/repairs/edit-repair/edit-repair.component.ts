@@ -8,15 +8,18 @@ import { UserService } from 'src/app/services/user/user-service.service';
 })
 export class UserEditRepairComponent {
 
+  user: any;
   searchQuery!: string;
   filteredResponse: any;
   repairs: any;
   currentStatus: any;
   currentDescription: any;
+  message = '';
 
   constructor(private service: LoggedUserService, private userService: UserService) { }
 
   ngOnInit(): void {
+    this.user = this.service.getUser();
     this.repairs = this.service.getRepairs();
   }
 
@@ -67,5 +70,15 @@ export class UserEditRepairComponent {
         }
       );
     }
+
+    this.userService.getRepairs(this.user.vatNumber).subscribe({
+      next: data => {
+        this.service.setRepairs(data);
+      },
+      error: er => this.message = "Error" + er.message,
+      complete: () => {
+        this.message = "Completed...";
+      }
+    });
   }
 }
