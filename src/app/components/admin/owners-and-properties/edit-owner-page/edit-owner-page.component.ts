@@ -13,9 +13,6 @@ export class AdminEditOwnerComponent implements OnInit {
   searchQuery!: string;
   filteredResponse: any;
   users: any;
-  currentUsername: any;
-  currentPassword: any;
-  currentEmail: any;
   message = '';
 
   constructor(private service: LoggedUserService,private userService: UserService, private adminService: AdminService, private loggedUser: LoggedUserService) { }
@@ -33,9 +30,6 @@ export class AdminEditOwnerComponent implements OnInit {
         || owner.vatNumber == parseInt(this.searchQuery);
       });
     }
-    this.currentEmail = this.filteredResponse.owner.email;
-    this.currentPassword = this.filteredResponse.owner.password;
-    this.currentUsername = this.filteredResponse.owner.username;
   }
 
   deleteUser(item:any) {
@@ -52,8 +46,7 @@ export class AdminEditOwnerComponent implements OnInit {
   }
 
   updateItem(item: any) {
-    // check if the email has changed
-    if (this.currentEmail != item.email) {
+    if (item.email) {
       this.userService.updateEmail({vatNumber: item.vatNumber, email: item.email}).subscribe(
         (res: any) => {
           console.log(res);
@@ -65,8 +58,7 @@ export class AdminEditOwnerComponent implements OnInit {
         }
       );
     }
-    // check if the password has changed
-    if (this.currentPassword != item.password) {
+    if (item.password) {
       this.userService.updatePassword({vatNumber: item.vatNumber, password: item.password}).subscribe(
         (res: any) => {
           console.log(res);
@@ -76,8 +68,7 @@ export class AdminEditOwnerComponent implements OnInit {
         }
       );
     }
-    // check if the username has changed
-    if (this.currentUsername != item.username) {
+    if (item.username) {
       this.userService.updateUsername({vatNumber: item.vatNumber, username: item.username}).subscribe(
         (res: any) => {
           console.log(res);

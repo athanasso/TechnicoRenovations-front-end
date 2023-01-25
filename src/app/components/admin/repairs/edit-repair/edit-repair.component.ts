@@ -12,8 +12,6 @@ export class EditRepairPageComponent {
   searchQuery!: string;
   filteredResponse: any;
   repairs: any;
-  currentDescription: any;
-  currentCost: any;
   message = '';
   @ViewChild('proposedStartDate') proposedStartDate!: ElementRef;
   @ViewChild('proposedEndDate') proposedEndDate!: ElementRef;
@@ -39,8 +37,6 @@ export class EditRepairPageComponent {
         || repair.repairId == parseInt(this.searchQuery);
       });
     }
-    this.currentDescription = this.filteredResponse.repair.description;
-    this.currentCost = this.filteredResponse.repair.proposedCost;
   }
 
   deleteRepair(item:any) {
@@ -57,7 +53,7 @@ export class EditRepairPageComponent {
   }
 
   updateItem(item: any) {
-    if (this.currentDescription != item.desciption){
+    if (item.desciption){
       this.userService.updateDescription({ownerVatNumber: item.propertyOwner.vatNumber, repairId: item.repairId, description: item.desciption}).subscribe(
         (res: any) => {
           console.log(res);
@@ -67,7 +63,7 @@ export class EditRepairPageComponent {
         }
       );
     }
-    if (this.currentCost != item.proposedCost){
+    if (item.proposedCost){
       this.adminService.proposeCost({repairId: item.repairId, proposedCost: item.proposedCost}).subscribe(
         (res: any) => {
           console.log(res);
@@ -78,7 +74,7 @@ export class EditRepairPageComponent {
       );
     }
 
-    if (this.proposedStartDate.nativeElement.dirty && this.proposedEndDate.nativeElement.dirty){
+    if (!this.proposedStartDate.nativeElement.dirty && !this.proposedEndDate.nativeElement.dirty){
       this.adminService.proposeDates({repairId: item.repairId, proposedStartDate: this.formatDate(item.proposedStartDate), proposedEndDate: this.formatDate(item.proposedEndDate)}).subscribe(
         (res: any) => {
           console.log(res);

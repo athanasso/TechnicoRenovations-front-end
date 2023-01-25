@@ -9,17 +9,11 @@ import { UserService } from 'src/app/services/user/user-service.service';
 export class UserDetailsComponent {
 
   user : any;
-  currentEmail!: String;
-  currentPassword!: String;
-  currentUsername!: String;
   message = '';
   temp : any;
 
   constructor(private userService: UserService, private loggedUser: LoggedUserService){
     this.user = loggedUser.getUser();
-    this.currentEmail = this.user.email;
-    this.currentPassword = this.user.password;
-    this.currentUsername = this.user.username;
   }
 
   deleteUser(response:any) {
@@ -36,7 +30,7 @@ export class UserDetailsComponent {
   }
 
   updateItem(response: any) {
-    if (this.currentEmail != response.email){
+    if (response.email){
       this.userService.updateEmail({vatNumber: response.vatNumber, email: response.email}).subscribe(
         (res: any) => {
           console.log(res);
@@ -48,7 +42,7 @@ export class UserDetailsComponent {
         }
       );
     }
-    if (this.currentPassword != response.password){
+    if (response.password){
       this.userService.updatePassword({vatNumber: response.vatNumber, password: response.password}).subscribe(
         (res: any) => {
           console.log(res);
@@ -58,7 +52,7 @@ export class UserDetailsComponent {
         }
       );
     }
-    if (this.currentUsername != response.username){
+    if (response.username){
       this.userService.updateUsername({vatNumber: response.vatNumber, username: response.username}).subscribe(
         (res: any) => {
           console.log(res);

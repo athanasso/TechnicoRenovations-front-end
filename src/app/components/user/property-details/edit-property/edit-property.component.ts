@@ -12,8 +12,6 @@ export class UserEditPropertyComponent {
   searchQuery!: string;
   filteredResponse: any;
   properties: any;
-  currentAddress!: string;
-  currectYear!: number;
   message = '';
 
   repairTypeOptions = [
@@ -38,8 +36,7 @@ export class UserEditPropertyComponent {
         return property.propertyId.toLowerCase().includes(this.searchQuery.toLowerCase());
       });
     }
-    this.currentAddress = this.filteredResponse.property.propertyAddress;
-    this.currectYear = this.filteredResponse.property.yearOfConstruction;
+    console.log(this.filteredResponse[0].propertyAddress);
   }
 
   deleteProperty(item:any) {
@@ -56,7 +53,7 @@ export class UserEditPropertyComponent {
   }
 
   updateItem(item: any) {
-    if (this.currentAddress != item.propertyAddress){
+    if (item.propertyAddress){
       this.userService.updatePropertyAddress({ownerVatNumber: item.ownerVatNumber, propertyId: item.propertyId, propertyAddress: item.propertyAddress}).subscribe(
         (res: any) => {
           console.log(res);
@@ -66,7 +63,7 @@ export class UserEditPropertyComponent {
         }
       );
     }
-    if (this.currectYear != item.yearOfConstruction){
+    if (item.yearOfConstruction){
       this.userService.updatePropertyYear({ownerVatNumber: item.ownerVatNumber, propertyId: item.propertyId, yearOfConstruction: item.yearOfConstruction}).subscribe(
         (res: any) => {
           console.log(res);

@@ -12,9 +12,6 @@ export class AdminEditPropertyComponent {
   searchQuery!: string;
   filteredResponse: any;
   properties: any;
-  currentAddress!: string;
-  currentYear!: number;
-  currentEmail!: string;
   message = '';
 
   constructor(private service: LoggedUserService, private userService: UserService, private adminService: AdminService, private loggedUser: LoggedUserService) { }
@@ -32,10 +29,6 @@ export class AdminEditPropertyComponent {
         || property.yearOfConstruction == parseInt(this.searchQuery);
       });
     }
-
-    this.currentAddress = this.filteredResponse.property.propertyAddress;
-    this.currentYear = this.filteredResponse.property.yearOfConstruction;
-    this.currentEmail = this.filteredResponse.propertyOwner.email;
   }
 
   deleteUser(item:any) {
@@ -52,7 +45,7 @@ export class AdminEditPropertyComponent {
   }
 
   updateItem(item: any) {
-    if (this.currentAddress != item.propertyAddress){
+    if (item.propertyAddress){
       this.userService.updatePropertyAddress({ownerVatNumber: item.propertyOwner.vatNumber, propertyId: item.propertyId, propertyAddress: item.propertyAddress}).subscribe(
         (res: any) => {
           console.log(res);
@@ -62,7 +55,7 @@ export class AdminEditPropertyComponent {
         }
       );
     }
-    if (this.currentYear != item.yearOfConstruction){
+    if (item.yearOfConstruction){
       this.userService.updatePropertyYear({ownerVatNumber: item.propertyOwner.vatNumber, propertyId: item.propertyId, yearOfConstruction: item.yearOfConstruction}).subscribe(
         (res: any) => {
           console.log(res);
@@ -72,7 +65,7 @@ export class AdminEditPropertyComponent {
         }
       );
     }
-    if (this.currentEmail != item.propertyOwner.email){
+    if (item.propertyOwner.email){
       this.userService.updateEmail({vatNumber: item.propertyOwner.vatNumber, email: item.propertyOwner.email}).subscribe(
         (res: any) => {
           console.log(res);
